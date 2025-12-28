@@ -1,0 +1,12 @@
+# pesde
+*_packages
+.pesde
+pesde.lock
+
+# dev
+selene.toml
+sourcemap.json
+out
+
+# misc
+assets/places

@@ -1,0 +1,26 @@
+[
+  {
+    "label": "autogenerate sourcemap",
+    "command": "rojo sourcemap --output sourcemap.json --watch"
+  },
+
+  {
+    "label": "serve",
+    "command": "rojo serve game.project.json"
+  },
+  
+  {
+    "label": "build network",
+    "command": "blink ext/network/core.blink --watch"
+  },
+  
+  {
+    "label": "darklua process",
+    "command": "darklua process src out --watch"
+  },
+  
+  {
+    "label": "all",
+    "command": "darklua process src out --watch | rojo serve | blink ext/network/core.blink --watch | rojo sourcemap --output sourcemap.json --watch"
+  }
+]

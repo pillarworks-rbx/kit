@@ -1,0 +1,8 @@
+option Casing = Snake
+
+event damage {
+    From: Client,
+    Type: Unreliable,
+    Call: Polling,
+    Data: u8
+}

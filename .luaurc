@@ -1,0 +1,14 @@
+{
+  "aliases": {
+    "server": "./src/server",
+    "shared": "./src/shared",
+    "client": "./src/client",
+    
+    "pkg": "./roblox_packages",
+    
+    "kit": "./src/shared/kit",
+    "lifecycles": "./src/shared/lifecycles",
+    
+    "lune": "~/.lune/.typedefs/0.10.4/"
+  }
+}

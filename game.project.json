@@ -1,0 +1,61 @@
+{
+  "name": "pillarworks",
+
+  "tree": {
+    "$className": "DataModel",
+
+    "ReplicatedStorage": {
+      "$className": "ReplicatedStorage",
+      
+      "packages": {
+        "$ignoreUnknownInstances": true,
+        
+        "$path": {
+          "optional": "roblox_packages"
+        }
+      },
+
+      "shared": {
+        "$ignoreUnknownInstances": true,
+        
+        "$path": {
+          "optional": "out/shared"
+        }
+      },
+
+      "$ignoreUnknownInstances": true
+    },
+
+    "ServerScriptService": {
+      "$className": "ServerScriptService",
+
+      "server": {
+        "$ignoreUnknownInstances": true,
+        
+        "$path": {
+          "optional": "out/server"
+        }
+      },
+
+      "$ignoreUnknownInstances": true
+    },
+    
+    "StarterPlayer": {
+      "$className": "StarterPlayer",
+
+      "StarterPlayerScripts": {
+        "$ignoreUnknownInstances": true,
+        
+        "client": {
+          "$ignoreUnknownInstances": true,
+          
+          "$path": {
+            "optional": "out/client"
+          }
+        }
+      },
+
+      "$ignoreUnknownInstances": true
+    }
+  }
+}

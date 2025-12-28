@@ -1,0 +1,13 @@
+option ClientOutput = "../../src/shared/network/client.luau"
+option ServerOutput = "../../src/shared/network/server.luau"
+
+option Casing = Snake
+
+event reload_character {
+    From: Client,
+    Type: Reliable,
+    Call: Polling,
+    Data: CFrame?
+}
+
+import "./kit"
