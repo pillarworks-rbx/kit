@@ -68,7 +68,7 @@ return {
 
 			iris.PushConfig({ RichText = true })
 
-			for name, debugger in ipairs(debuggers) do
+			for _, debugger in ipairs(debuggers) do
 				iris.Window(debugger.window)
 
 				debugger.callback()

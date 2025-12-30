@@ -16,7 +16,7 @@ kit_service.identifier = "kit_service"
 
 export type self = typeof(kit_service)
 
-function kit_service.prepare_pillar(self: self, pillar: Folder)
+function kit_service.prepare_pillar(_self: self, pillar: Folder)
 	if not assets then
 		return
 	end

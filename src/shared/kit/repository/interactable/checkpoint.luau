@@ -72,7 +72,7 @@ function object.events.load(self: object, pillar: pillar)
 	debugger.log(`object {self.id} has successfully loaded`, "success")
 end
 
-function object.events.unload(self: object, pillar: pillar)
+function object.events.unload(self: object, _pillar: pillar)
 	self.group:clean()
 
 	debugger.log(`object {self.id} has successfully unloaded`, "success")

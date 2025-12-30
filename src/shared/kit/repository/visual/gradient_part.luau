@@ -57,7 +57,7 @@ function evaluate_colour_sequence(sequence: ColorSequence, alpha: number)
 	return Color3.new()
 end
 
-function object.events.load(self: object, pillar: pillar)
+function object.events.load(self: object, _pillar: pillar)
 	local alpha = 0
 
 	self.group:add(RunService.PreRender:Connect(function(delta_time: number)
@@ -92,7 +92,7 @@ function object.events.load(self: object, pillar: pillar)
 	debugger.log(`object {self.id} has successfully loaded`, "success")
 end
 
-function object.events.unload(self: object, pillar: pillar)
+function object.events.unload(self: object, _pillar: pillar)
 	self.group:clean()
 
 	debugger.log(`object {self.id} has successfully unloaded`, "success")

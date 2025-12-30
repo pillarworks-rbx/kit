@@ -23,7 +23,7 @@ local raycast_params = RaycastParams.new()
 
 raycast_params.FilterType = Enum.RaycastFilterType.Include
 
-function movement_controller.get_raycast_result(self: self, position: Vector3)
+function movement_controller.get_raycast_result(_self: self, position: Vector3)
 	--// loop through all stick parts and only add them to the filter
 	--// if they have the "stick_active" attribute set to true
 	for _, part in pairs(CollectionService:GetTagged("stick_part")) do
@@ -37,7 +37,7 @@ function movement_controller.get_raycast_result(self: self, position: Vector3)
 	return workspace:Raycast(position, Vector3.new(0, -7.5, 0), raycast_params)
 end
 
-function movement_controller.handle_stick(self: self, delta_time: number)
+function movement_controller.handle_stick(self: self, _delta_time: number)
 	--// get raycast result
 	local raycast_result = self:get_raycast_result(root.CFrame.Position)
 

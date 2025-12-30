@@ -40,11 +40,11 @@ function debug_controller.start(self: self)
 		return debugger_open
 	end)
 
-	task.spawn(function()
-		while task.wait(1) do
-			--debugger_open = not debugger_open
-		end
-	end)
+	-- task.spawn(function()
+	-- 	while task.wait(1) do
+	-- 	    debugger_open = not debugger_open
+	-- 	end
+	-- end)
 
 	--// add output debugger
 	debugger.add_debugger({ "pillarworks kit output" }, function()

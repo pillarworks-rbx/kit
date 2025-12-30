@@ -114,7 +114,7 @@ function music_controller.start(self: self)
 		active_tween:Play()
 	end
 
-	local regions = {}
+	local _regions = {}
 
 	for _, zone in pairs(zones) do
 		local new_region = region.new(zone, {
@@ -135,7 +135,7 @@ function music_controller.start(self: self)
 			end,
 		})
 
-		table.insert(regions, new_region)
+		table.insert(_regions, new_region)
 	end
 end
 

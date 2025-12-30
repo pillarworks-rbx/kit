@@ -30,7 +30,7 @@ local object = objects.register({
 export type pillar = types.pillar
 export type object = types.object<typeof(object)>
 
-function object.events.load(self: object, pillar: pillar)
+function object.events.load(self: object, _pillar: pillar)
 	local current_index, next_index = 1, 2
 	local alpha, direction = 0, 1
 
@@ -110,7 +110,7 @@ function object.events.load(self: object, pillar: pillar)
 	debugger.log(`object {self.id} has successfully loaded`, "success")
 end
 
-function object.events.unload(self: object, pillar: pillar)
+function object.events.unload(self: object, _pillar: pillar)
 	self.group:clean()
 	
 	debugger.log(`object {self.id} has successfully unloaded`, "success")

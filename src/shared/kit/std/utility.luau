@@ -1,12 +1,14 @@
 --!optimize 2
 --!native
 
+local utility = {}
+
 local systems: { [any]: number } = {}
 local uuids: { [string]: { string } } = {}
 
 export type throttle = (name: any, time: number) -> boolean | (time: number) -> boolean
 
-function collect<T...>(event: RBXScriptSignal<T...>)
+function utility.collect<T...>(event: RBXScriptSignal<T...>)
 	local storage = {}
 	local mt = {}
 
@@ -38,7 +40,7 @@ function collect<T...>(event: RBXScriptSignal<T...>)
 	end
 end
 
-function throttle(time_or_name: number | any, time: number?): boolean
+function utility.throttle(time_or_name: number | any, time: number?): boolean
 	local name = time_or_name
 
 	if time == nil then
@@ -81,7 +83,7 @@ for _, tbl in pairs({ lowercase, uppercase, digits }) do
 	end
 end
 
-function create_uuid(uuid_type: "object")
+function utility.create_uuid(uuid_type: "object")
 	local uuid = string.gsub("xxxxxxxxxxxxxx", "x", function()
 		return all_characters[math.random(1, #all_characters)]
 	end)
@@ -93,8 +95,4 @@ function create_uuid(uuid_type: "object")
 	return uuid
 end
 
-return {
-	collect = collect,
-	throttle = throttle,
-	create_uuid = create_uuid,
-}
+return utility

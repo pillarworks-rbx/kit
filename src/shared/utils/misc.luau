@@ -23,7 +23,7 @@ function misc_utils.copy(root: Instance, destination: Folder)
 	end
 end
 
-function misc_utils.get_table_size(tbl: { any }): number
+function misc_utils.get_table_size(tbl: { any } | { [string]: any }): number
 	local size = 0
 	
 	for _ in pairs(tbl) do

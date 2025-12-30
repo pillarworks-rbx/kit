@@ -44,7 +44,7 @@ local overlap_params = OverlapParams.new()
 
 overlap_params.FilterType = Enum.RaycastFilterType.Exclude
 
-function object.events.load(self: object, pillar: pillar)
+function object.events.load(self: object, _pillar: pillar)
 	local player = players.get_player()
 	local character = players.get_character(player)
 	local root = character:WaitForChild("HumanoidRootPart") :: BasePart
@@ -149,50 +149,44 @@ function object.events.load(self: object, pillar: pillar)
 		root_attachment.Name = "vine_root_attachment"
 		root_attachment.Parent = root
 
-		local align_pos = Instance.new("AlignPosition")
+		local align_position = Instance.new("AlignPosition")
 
-		align_pos.Attachment0 = root_attachment
-		align_pos.Attachment1 = bar_attachment
-		align_pos.MaxForce = 15000
-		align_pos.Responsiveness = 10
-		align_pos.Mode = Enum.PositionAlignmentMode.TwoAttachment
-		align_pos.ApplyAtCenterOfMass = true
-		align_pos.Parent = root
+		align_position.Attachment0 = root_attachment
+		align_position.Attachment1 = bar_attachment
+		align_position.MaxForce = 15000
+		align_position.Responsiveness = 10
+		align_position.Mode = Enum.PositionAlignmentMode.TwoAttachment
+		align_position.ApplyAtCenterOfMass = true
+		align_position.Parent = root
 
-		local align_ori = Instance.new("AlignOrientation")
+		local align_orientation = Instance.new("AlignOrientation")
 
-		align_ori.Attachment0 = root_attachment
-		align_ori.Attachment1 = bar_attachment
-		align_ori.MaxTorque = 5000
-		align_ori.Responsiveness = 8
-		align_ori.Mode = Enum.OrientationAlignmentMode.TwoAttachment
-		align_ori.Parent = root
-
-		-- Humanoid state
+		align_orientation.Attachment0 = root_attachment
+		align_orientation.Attachment1 = bar_attachment
+		align_orientation.MaxTorque = 5000
+		align_orientation.Responsiveness = 8
+		align_orientation.Mode = Enum.OrientationAlignmentMode.TwoAttachment
+		align_orientation.Parent = root
+		
 		humanoid.AutoRotate = true
 		humanoid:ChangeState(Enum.HumanoidStateType.Physics)
 
-		ride_group:add(RunService.Heartbeat:Connect(function(dt)
+		ride_group:add(RunService.Heartbeat:Connect(function(_delta_time: number)
 			local bar_velocity = bar.AssemblyLinearVelocity
 			local rope_dir = (bar.Position - attachment_part.Position).Unit
-
-			-- Tangential velocity (actual swing motion)
+			
 			local tangential_velocity = bar_velocity - rope_dir * bar_velocity:Dot(rope_dir)
-
-			-- Player input force
 			local input_force = Vector3.zero
+			
 			if move_dir.Magnitude > 0 then
 				local tangent_input = (move_dir - move_dir:Dot(rope_dir) * rope_dir)
 
 				input_force = tangent_input * SWING_FORCE
 			end
-
-			-- Damping force (opposes motion)
+			
 			local damping_force = -tangential_velocity * DAMPING
-
 			local total_force = input_force + damping_force
-
-			-- Clamp for stability
+			
 			if total_force.Magnitude > MAX_FORCE then
 				total_force = total_force.Unit * MAX_FORCE
 			end
@@ -202,8 +196,9 @@ function object.events.load(self: object, pillar: pillar)
 
 		ride_group:add(function()
 			bar:Destroy()
-			align_pos:Destroy()
-			align_ori:Destroy()
+			
+			align_position:Destroy()
+			align_orientation:Destroy()
 		end)
 
 		if object_attributes.allow_jump_dismount then
@@ -230,7 +225,7 @@ function object.events.load(self: object, pillar: pillar)
 	debugger.log(`object {self.id} has successfully loaded`, "success")
 end
 
-function object.events.unload(self: object, pillar: pillar)
+function object.events.unload(self: object, _pillar: pillar)
 	self.group:clean()
 
 	debugger.log(`object {self.id} has successfully unloaded`, "success")

@@ -88,8 +88,8 @@ function richterm.combine(...: Formatter): Formatter
 
 	return function(s, nocolor)
 		if not nocolor then
-			for _, formatter in formatters do
-				s = formatter(s)
+			for _, formatter2 in formatters do
+				s = formatter2(s)
 			end
 		end
 
