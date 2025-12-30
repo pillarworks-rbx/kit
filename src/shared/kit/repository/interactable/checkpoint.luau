@@ -44,11 +44,9 @@ function on_hit(self: object, hit: BasePart, pillar: pillar)
 	
 	local checkpoint_cframe = self.instance.CFrame
 
-	print(checkpoint_id)
-
 	--// only fire once every few seconds
 	if utility.throttle(`update checkpoint for {player.UserId} in {self.id}`, cooldown) then
-		print(`update checkpoint for {player.UserId} as {self.id}`)
+		debugger.log(`update checkpoint for {player.UserId} as {self.id}`, "success")
 
 		checkpoint_utils.set_checkpoint(player, pillar, checkpoint_id, checkpoint_cframe)
 	end

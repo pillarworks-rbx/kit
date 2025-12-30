@@ -32,14 +32,11 @@ function kit_service.prepare_pillar(_self: self, pillar: Folder)
 end
 
 function kit_service.start(self: self)
-    print("started")
 	--// initialize group for this service
 	self.group = group.create()
 
 	local pillars = CollectionService:GetTagged(KIT_TAG)
 	local pillar = pillars[1]
-	
-	print(pillar)
 	
 	if pillar and pillar:HasTag(KIT_TAG) and pillar:IsA("Folder") then
 		self:prepare_pillar(pillar)

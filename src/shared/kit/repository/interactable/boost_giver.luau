@@ -55,8 +55,6 @@ function on_hit(self: object, hit: BasePart, _pillar: pillar)
 	local duration = object_attributes.duration
 	local cooldown = object_attributes.cooldown
 	local refill_timer = object_attributes.refill_timer
-	
-	print(effect)
 
 	local player = players.from_hit(hit)
 
