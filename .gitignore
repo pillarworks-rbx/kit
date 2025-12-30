@@ -10,3 +10,4 @@ out
 
 # misc
 assets/places
+*.rbxl.lock
