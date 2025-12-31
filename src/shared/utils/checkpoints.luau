@@ -1,6 +1,8 @@
 --!optimize 2
 --!native
 
+local debugger = require("@shared/debugger")
+
 local network = require("@shared/network/client")
 local types = require("@kit/types")
 local effects = require("@shared/utils/effects")
@@ -31,11 +33,11 @@ function checkpoint_utils.on_death(player: Player)
 		local id = current_checkpoint.id
 		local position = current_checkpoint.position
 
-		print(`{player.Name} died in pillar {pillar.id} at checkpoint {id}`)
+		debugger.log(`{player.Name} died in pillar {pillar.id} at checkpoint {id}`, "success")
 
 		network.reload_character.fire(position * CFrame.new(0, character_size.Y / 2, 0))
 	else
-		print(`{player.Name} died`)
+		debugger.log(`{player.Name} died`, "success")
 	end
 	
 	effects.clear(player)

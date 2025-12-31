@@ -1,20 +1,22 @@
 --!optimize 2
 --!native
 
-return {
-	get_property = function(instance: any, property: string): (any, boolean)
-		local result
+local property_utils = {}
 
-		local success = pcall(function()
-			result = instance[property]
-		end)
+function property_utils.get_property(instance: any, property: string): (any, boolean)
+	local result
 
-		return result, success
-	end,
+	local success = pcall(function()
+		result = instance[property]
+	end)
 
-	set_property = function(instance: any, property: string, value: any): boolean
-		return (pcall(function()
-			instance[property] = value
-		end))
-	end,
-}
+	return result, success
+end
+
+function property_utils.set_property(instance: any, property: string, value: any): boolean
+	return (pcall(function()
+		instance[property] = value
+	end))
+end
+
+return property_utils

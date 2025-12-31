@@ -1,0 +1,4 @@
+std = "roblox_std"
+
+[lints]
+bad_string_escape = "allow"

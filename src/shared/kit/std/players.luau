@@ -2,51 +2,52 @@
 --!native
 
 local Players = game:GetService("Players")
+local players_utils = {}
 
-return {
-    from_hit = function(hit: BasePart): Player?
-        if not hit or not hit.Parent then
-            return nil
-        end
+function players_utils.from_hit(hit: BasePart): Player?
+	if not hit or not hit.Parent then
+		return nil
+	end
 
-        if not hit.Parent:FindFirstChildOfClass("Humanoid") then
-            return nil
-        end
+	if not hit.Parent:FindFirstChildOfClass("Humanoid") then
+		return nil
+	end
 
-        local player = Players:GetPlayerFromCharacter(hit.Parent)
+	local player = Players:GetPlayerFromCharacter(hit.Parent)
 
-        return player
-    end,
+	return player
+end
 
-    get_player = function(): Player?
-        local player = Players.LocalPlayer or Players.PlayerAdded:Wait()
+function players_utils.get_player(): Player?
+	local player = Players.LocalPlayer or Players.PlayerAdded:Wait()
 
-        return player
-    end,
-    
-    get_character = function(player: Player): Model?
-        if not player then
-            return nil
-        end
+	return player
+end
 
-        local character = player.Character or player.CharacterAdded:Wait()
+function players_utils.get_character(player: Player): Model?
+	if not player then
+		return nil
+	end
 
-        return character
-    end,
+	local character = player.Character or player.CharacterAdded:Wait()
 
-    get_humanoid = function(player: Player): Humanoid?
-        if not player then
-            return nil
-        end
+	return character
+end
 
-        local character = player.Character or player.CharacterAdded:Wait()
+function players_utils.get_humanoid(player: Player): Humanoid?
+	if not player then
+		return nil
+	end
 
-        if not character then
-            return nil
-        end
+	local character = player.Character or player.CharacterAdded:Wait()
 
-        local humanoid = character:FindFirstChildOfClass("Humanoid")
+	if not character then
+		return nil
+	end
 
-        return humanoid
-    end
-}
+	local humanoid = character:FindFirstChildOfClass("Humanoid")
+
+	return humanoid
+end
+
+return players_utils

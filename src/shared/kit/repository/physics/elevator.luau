@@ -74,7 +74,7 @@ function get_velocity(part: BasePart)
 	return velocity
 end
 
-function object.events.load(self: object, pillar: pillar)
+function object.events.load(self: object, _pillar: pillar)
 	--// initialise player variables
 	local player = players.get_player()
 	local character = players.get_character(player)
@@ -144,11 +144,11 @@ function object.events.load(self: object, pillar: pillar)
 			end
 		end
 	end))
-	
+
 	debugger.log(`object {self.id} has successfully loaded`, "success")
 end
 
-function object.events.unload(self: object, pillar: pillar)
+function object.events.unload(self: object, _pillar: pillar)
 	local instance = self.instance
 
 	if not instance or not instance:IsA("Model") then
@@ -156,15 +156,16 @@ function object.events.unload(self: object, pillar: pillar)
 	end
 
 	for _, descendant in pairs(instance:GetDescendants()) do
-		if descendant:IsA("LinearVelocity") and descendant.Name == "elevator_velocity" then
-			descendant:Destroy()
-		elseif descendant:IsA("Attachment") and descendant.Name == "elevator_attachment" then
+		if
+			(descendant:IsA("LinearVelocity") and descendant.Name == "elevator_velocity")
+			or (descendant:IsA("Attachment") and descendant.Name == "elevator_attachment")
+		then
 			descendant:Destroy()
 		end
 	end
 
 	self.group:clean()
-	
+
 	debugger.log(`object {self.id} has successfully unloaded`, "success")
 end
 
