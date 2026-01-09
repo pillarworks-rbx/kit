@@ -13,7 +13,7 @@ local combined_controllers = {} :: { [string]: any }
 local client_controllers = parent.controllers
 
 --// copy client controllers to combined controllers
-misc_utils.traverse(client_controllers, combined_controllers, function(instance: Instance)
+misc_utils.traverse(client_controllers, function(instance: Instance)
     if instance and instance:IsA("ModuleScript") then
         local module = require(instance)
         

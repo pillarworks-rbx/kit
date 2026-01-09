@@ -11,10 +11,8 @@
           "@shared": "./src/shared",
           "@client": "./src/client",
 
-          "@pkg": "./roblox_packages",
-
-          "@kit": "./src/shared/kit",
-          "@lifecycles": "./src/shared/lifecycles"
+          "@@": "./roblox_packages",
+          "@kit": "./src/shared/kit"
         }
       },
 

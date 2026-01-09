@@ -1,0 +1,47 @@
+title = "pillarworks kit"
+gitRepoUrl = "https://github.com/pillarworks-rbx/kit"
+
+gitSourceBranch = "main"
+changelog = false
+
+[[classOrder]]
+section = "kit"
+tag = "kit"
+
+[[classOrder]]
+section = "std"
+tag = "std"
+
+[[classOrder]]
+section = "utility"
+tag = "utility"
+
+[docusaurus]
+onBrokenLinks = "throw"
+onBrokenMarkdownLinks = "warn"
+favicon = "/kit/images/logo.png"
+
+organizationName = "pillarworks-rbx"
+projectName = "kit"
+url = "https://pillarworks-rbx.github.io"
+baseUrl = "/kit"
+tagline = "the official pillarworks pillar creation kit"
+
+[home]
+enabled = true
+includeReadme = false
+
+[footer]
+style = "dark"
+copyright = "copyright © 2026 pillarworks-rbx. built with moonwave and docusaurus"
+
+[[footer.links]]
+title = "socials"
+
+[[footer.links.items]]
+label = "discord server"
+href = "https://discord.gg/EFay8r3UsR"
+
+[[footer.links.items]]
+label = "roblox group"
+href = "https://www.roblox.com/communities/637088148/team-pillarworks"

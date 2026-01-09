@@ -15,7 +15,7 @@ music_controller.identifier = "music_controller"
 
 export type self = typeof(music_controller)
 
-type sound = {
+export type sound = {
     audio: string,
     volume: number
 }

@@ -1,23 +1,46 @@
 --!optimize 2
 --!native
 
+--[=[
+	@class utility
+	@tag std
+
+	this module provides a collection of utility functions.
+]=]
 local utility = {}
 
 local systems: { [any]: number } = {}
-local uuids: { [string]: { string } } = {}
+local uuids: { [uuid_type]: { string } } = {}
 
-export type throttle = (name: any, time: number) -> boolean | (time: number) -> boolean
+--[=[
+	@type uuid_type "object"
+	@within utility
+	
+	a type of uuid. represents a category of uuids.
+]=]
+export type uuid_type = "object"
 
-function utility.collect<T...>(event: RBXScriptSignal<T...>)
+--[=[
+	@function collect
+	@within utility
+	@tag std
+	
+	collect events from a signal.
+	
+	@param event RBXScriptSignal -- the signal to collect events from.
+	@return (() -> (number, any), () -> ()) -- the iterator function and the disconnect function.
+]=]
+function utility.collect(event: RBXScriptSignal)
 	local storage = {}
-	local mt = {}
+	local meta = {}
 
 	local iter = function()
 		local n = #storage
 
 		return function()
 			if n <= 0 then
-				mt.__iter = nil
+				meta.__iter = nil
+				
 				return nil
 			end
 
@@ -30,16 +53,28 @@ function utility.collect<T...>(event: RBXScriptSignal<T...>)
 	local disconnect = event:Connect(function(...)
 		table.insert(storage, { ... })
 
-		mt.__iter = iter
+		meta.__iter = iter
 	end)
 
-	setmetatable(storage, mt)
+	setmetatable(storage, meta)
 
-	return (storage :: any) :: () -> (number, T...), function()
+	return (storage :: any) :: () -> (number, any), function()
 		disconnect()
 	end
 end
 
+--[=[
+	@function throttle
+	@within utility
+	@tag std
+	
+	throttle a certain event. this works identically to matter's useThrottle hook.
+	
+	@param time_or_name number | any -- the identifier for the throttle system.
+	@param time number? -- the time to wait before allowing the event to fire again.
+	
+	@return boolean -- whether or not the event can continue.
+]=]
 function utility.throttle(time_or_name: number | any, time: number?): boolean
 	local name = time_or_name
 
@@ -78,12 +113,24 @@ local digits = get_char_range(string.byte("0"), string.byte("9"))
 local all_characters = {}
 
 for _, tbl in pairs({ lowercase, uppercase, digits }) do
-	for _, char in pairs(tbl) do
-		table.insert(all_characters, char)
+	for _, range in pairs(tbl) do
+		table.insert(all_characters, range)
 	end
 end
 
-function utility.create_uuid(uuid_type: "object")
+--[=[
+	@function create_uuid
+	@within utility
+	@tag std
+	
+	create a random uuid in a category.
+	
+	the uuid is 14 characters long, and consists of both uppercase and lowercase letters, and numbers from 0-9.
+	
+	@param uuid_type uuid_type -- the type of uuid to create.
+	@return string -- the created uuid.
+]=]
+function utility.create_uuid(uuid_type: uuid_type): string
 	local uuid = string.gsub("xxxxxxxxxxxxxx", "x", function()
 		return all_characters[math.random(1, #all_characters)]
 	end)

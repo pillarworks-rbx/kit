@@ -2,8 +2,25 @@
 --!native
 
 local types = require("@kit/types")
+
+--[=[
+	@class objects_utils
+	@tag std
+	
+	this module provides utilities for creating kit objects.
+]=]
 local objects_utils = {}
 
+--[=[
+	@function register
+	@within objects_utils
+	@tag std
+
+	register an object with the kit, preparing it for further use.
+
+	@param object object -- the object to register.
+	@return object -- the registered object.
+]=]
 function objects_utils.register(object: types.object<any>): types.object<any>
 	local new_object = table.clone(object)
 

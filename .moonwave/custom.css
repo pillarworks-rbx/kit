@@ -1,0 +1,55 @@
+@import url("https://fonts.googleapis.com/css2?family=PT+Serif&display=swap");
+
+h1,
+h2,
+h3,
+p,
+.navbar__title,
+.navbar__item,
+.button,
+.button * {
+    text-transform: lowercase;
+}
+
+.hero__title {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.1em;
+}
+
+.hero__title::before {
+    content: "";
+    display: inline-block;
+
+    width: 1.75em;
+    height: 1.75em;
+
+    background-image: url("/images/logo.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+
+    flex-shrink: 0;
+    transform: translateY(0.075em);
+}
+
+.container.margin-vert--xl .hero__title::before {
+    content: none;
+}
+
+[data-theme="dark"] .hero__title::before {
+    filter: brightness(1.1);
+}
+
+:root {
+    --ifm-font-family-base: "PT Serif", serif;
+
+    --ifm-color-primary: rgb(119, 141, 169);
+    --ifm-color-primary-dark: rgb(53, 67, 82);
+    --ifm-color-primary-darker: rgb(33, 47, 62);
+    --ifm-color-primary-darkest: rgb(13, 27, 42);
+    --ifm-color-primary-light: rgb(184, 185, 181);
+    --ifm-color-primary-lighter: rgb(204, 205, 201);
+    --ifm-color-primary-lightest: rgb(224, 225, 221);
+    --ifm-code-font-size: 95%;
+}

@@ -28,39 +28,48 @@ effects_controller.identifier = "effects_controller"
 
 export type self = typeof(effects_controller)
 
+function effects_controller.create_root(_self: self)
+	local player = Players.LocalPlayer or Players.PlayerAdded:Wait()
+	local player_gui = player.PlayerGui
+
+	--// init the screengui
+	local boost_root = root_component({
+		Parent = player_gui,
+		IgnoreGuiInset = true,
+	}, {})
+
+	local boost_frame = frame_component({
+		Parent = boost_root.instance,
+		Size = UDim2.new(1, 0, 1, 0),
+		Position = UDim2.new(0, 0, 0, 0),
+		BackgroundColor3 = Color3.fromRGB(0, 0, 0),
+		BackgroundTransparency = 1,
+		BorderSizePixel = 0,
+	}, {}, {
+		layout = create("UIListLayout")({
+			Name = "layout",
+
+			SortOrder = Enum.SortOrder.LayoutOrder,
+			Padding = UDim.new(0, 10),
+
+			FillDirection = Enum.FillDirection.Horizontal,
+			HorizontalAlignment = Enum.HorizontalAlignment.Center,
+			VerticalAlignment = Enum.VerticalAlignment.Bottom,
+		}),
+	})
+
+	return boost_frame
+end
+
 function effects_controller.start(self: self)
 	--// initialize group for this controller
 	self.group = group.create()
 
 	root(function()
 		local player = Players.LocalPlayer or Players.PlayerAdded:Wait()
-		local player_gui = player.PlayerGui
 
 		--// init the screengui
-		local boost_root = root_component({
-			Parent = player_gui,
-			IgnoreGuiInset = true,
-		}, {})
-
-		local boost_frame = frame_component({
-			Parent = boost_root.instance,
-			Size = UDim2.new(1, 0, 1, 0),
-			Position = UDim2.new(0, 0, 0, 0),
-			BackgroundColor3 = Color3.fromRGB(0, 0, 0),
-			BackgroundTransparency = 1,
-			BorderSizePixel = 0,
-		}, {}, {
-			layout = create("UIListLayout")({
-				Name = "layout",
-
-				SortOrder = Enum.SortOrder.LayoutOrder,
-				Padding = UDim.new(0, 10),
-
-				FillDirection = Enum.FillDirection.Horizontal,
-				HorizontalAlignment = Enum.HorizontalAlignment.Center,
-				VerticalAlignment = Enum.VerticalAlignment.Bottom,
-			}),
-		})
+		local boost_frame = self:create_root()
 
 		local STEP_RATE = 0.1
 		local REMOVE_GRACE = 0.15

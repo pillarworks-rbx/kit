@@ -48,7 +48,7 @@ function on_hit(self: object, hit: BasePart, pillar: pillar)
 	if utility.throttle(`update checkpoint for {player.UserId} in {self.id}`, cooldown) then
 		debugger.log(`update checkpoint for {player.UserId} as {self.id}`, "success")
 
-		checkpoint_utils.set_checkpoint(player, pillar, checkpoint_id, checkpoint_cframe)
+		checkpoint_utils.set(player, pillar, checkpoint_id, checkpoint_cframe)
 	end
 end
 

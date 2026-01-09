@@ -7,11 +7,10 @@
     "pkg": "./roblox_packages",
     
     "kit": "./src/shared/kit",
-    "lifecycles": "./src/shared/lifecycles",
-    
-    "lune": "~/.lune/.typedefs/0.10.4/",
     
     "libsync": ".lune/libsync",
-    "vendor": ".lune/vendor"
+    "vendor": ".lune/vendor",
+    
+    "lune": "~/.lune/.typedefs/0.10.4/"
   }
 }

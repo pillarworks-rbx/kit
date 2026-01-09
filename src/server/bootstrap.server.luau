@@ -10,7 +10,7 @@ local combined_services = {} :: { [string]: any }
 local server_services = parent.services
 
 --// copy server services to combined services
-misc_utils.traverse(server_services, combined_services, function(instance: Instance)
+misc_utils.traverse(server_services, function(instance: Instance)
     if instance and instance:IsA("ModuleScript") then
         local module = require(instance)
         

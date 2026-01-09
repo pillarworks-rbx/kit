@@ -83,8 +83,8 @@ function movement_controller.start(self: self)
 		last_cframe = nil
 	end))
 
-	--// connect the handle_stick method to the PostSimulation event
-	self.group:add(RunService.PostSimulation:Connect(function(delta_time: number)
+	--// connect the handle_stick method to the PreSimulation event
+	self.group:add(RunService.PreSimulation:Connect(function(delta_time: number)
 		delta_time = math.min(delta_time, 1)
 
 		self:handle_stick(delta_time)
