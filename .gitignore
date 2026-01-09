@@ -7,6 +7,9 @@ pesde.lock
 sourcemap.json
 out
 
+# docs
+build
+
 # misc
 assets/places
 *.rbxl.lock
