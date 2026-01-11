@@ -6,4 +6,4 @@ sidebar_position: 1
 
 no actual documentation yet :(
 
-check out the api reference!
+although, you can check out the page about the api reference [here](docs/api-reference)!

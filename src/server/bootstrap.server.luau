@@ -9,14 +9,16 @@ local parent = script.Parent :: Instance
 local combined_services = {} :: { [string]: any }
 local server_services = parent.services
 
---// copy server services to combined services
-misc_utils.traverse(server_services, function(instance: Instance)
+function parse_fn(instance: Instance)
     if instance and instance:IsA("ModuleScript") then
         local module = require(instance)
         
         table.insert(combined_services, module)
     end
-end)
+end
+
+--// copy server services to combined services
+misc_utils.traverse(server_services, parse_fn, "ModuleScript")
 
 --// bootstrap services
 bootstrap(combined_services)

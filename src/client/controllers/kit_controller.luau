@@ -9,12 +9,10 @@ local unloaded_objects = assets and assets:WaitForChild("unloaded_objects") :: F
 
 local group = require("@pkg/group")
 local debugger = require("@shared/debugger")
+local misc_utils = require("@shared/utils/misc")
 
 local kit_types = require("@kit/types")
 local repository = require("@kit/repository") :: { [string]: any }
-local std = require("@kit/std")
-
-local utility = std.utility
 
 local kit_controller = {}
 
@@ -119,7 +117,7 @@ function kit_controller.load_object(self: self, instance: Instance, pillar_data:
 	end
 
 	--// generate a new id for the object
-	obj_id = utility.create_uuid("object")
+	obj_id = misc_utils.create_uuid("object")
 
 	--// set the object id attribute on the instance
 	instance:SetAttribute("obj_id", obj_id)

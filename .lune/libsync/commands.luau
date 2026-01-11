@@ -7,33 +7,44 @@ export type command = {
 }
 
 return {
-	{
+	sourcemap = {
 		command = "rojo",
 		colour = richterm.red,
 		args = {
 			"sourcemap",
-			"default.project.json",
+			"sourcemap.project.json",
 			"--output",
 			"sourcemap.json",
 			"--watch",
 		},
 	},
 
-	{
+	net = {
 		command = "blink",
 		colour = richterm.yellow,
-		args = { "ext/network/core.blink", "--watch" },
+		args = {
+			"ext/network/core.blink",
+			"--watch",
+		},
 	},
 
-	{
+	aliases = {
 		command = "darklua",
 		colour = richterm.magenta,
-		args = { "process", "src", "out", "--watch" },
+		args = {
+			"process",
+			"src",
+			"out",
+			"--watch",
+		},
 	},
 
-	{
+	serve = {
 		command = "rojo",
 		colour = richterm.red,
-		args = { "serve", "game.project.json" },
+		args = {
+			"serve",
+			"kit.project.json",
+		},
 	},
-} :: { command }
+} :: { [string]: command }

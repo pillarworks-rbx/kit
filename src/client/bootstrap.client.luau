@@ -12,14 +12,16 @@ local parent = script.Parent :: Instance
 local combined_controllers = {} :: { [string]: any }
 local client_controllers = parent.controllers
 
---// copy client controllers to combined controllers
-misc_utils.traverse(client_controllers, function(instance: Instance)
+function parse_fn(instance: Instance)
     if instance and instance:IsA("ModuleScript") then
         local module = require(instance)
         
         table.insert(combined_controllers, module)
     end
-end)
+end
+
+--// copy client controllers to combined controllers
+misc_utils.traverse(client_controllers, parse_fn, "ModuleScript")
 
 function character_added()
 	--// bootstrap controllers

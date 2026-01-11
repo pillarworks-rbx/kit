@@ -2,16 +2,16 @@
 --!native
 
 local debugger = require("@shared/debugger")
+local misc_utils = require("@shared/utils/misc")
 
 local std = require("@kit/std")
 local types = require("@kit/types")
 
-local objects = std.objects
+local object_utils = std.object
 local attributes = std.attributes
 local players = std.players
-local utility = std.utility
 
-local object = objects.register({
+local object = object_utils.register({
 	events = {},
 
 	attributes = {
@@ -65,7 +65,7 @@ function on_hit(self: object, hit: BasePart, _pillar: pillar)
         return
     end
 
-	if utility.throttle(`teleport {player.UserId} in {self.id}`, cooldown) then
+	if misc_utils.throttle(`teleport {player.UserId} in {self.id}`, cooldown) then
 	    local seamless_offset = if seamless then origin.CFrame:ToObjectSpace(root.CFrame) else CFrame.new()
 		local true_offset = offset * seamless_offset:Inverse()
 		

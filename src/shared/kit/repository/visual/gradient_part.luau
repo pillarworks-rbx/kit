@@ -8,10 +8,10 @@ local debugger = require("@shared/debugger")
 local std = require("@kit/std")
 local types = require("@kit/types")
 
-local objects = std.objects
+local object_utils = std.object
 local property = std.property
 
-local object = objects.register({
+local object = object_utils.register({
 	events = {},
 	attributes = {},
 })

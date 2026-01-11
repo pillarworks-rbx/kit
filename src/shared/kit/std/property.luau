@@ -5,14 +5,13 @@
 	@class property_utils
 	@tag std
 
-	this module provides utilities for safely working with properties.
+	this module provides utilities for *safely* working with properties.
 ]=]
 local property_utils = {}
 
 --[=[
 	@function get_property
 	@within property_utils
-	@tag std
 	
 	get a property from an instance.
 	
@@ -34,7 +33,6 @@ end
 --[=[
 	@function set_property
 	@within property_utils
-	@tag std
 	
 	set a property on an instance.
 	

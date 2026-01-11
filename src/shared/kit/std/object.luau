@@ -4,24 +4,23 @@
 local types = require("@kit/types")
 
 --[=[
-	@class objects_utils
+	@class object_utils
 	@tag std
 	
-	this module provides utilities for creating kit objects.
+	this module provides utilities for *creating kit objects*.
 ]=]
-local objects_utils = {}
+local object_utils = {}
 
 --[=[
 	@function register
-	@within objects_utils
-	@tag std
+	@within object_utils
 
 	register an object with the kit, preparing it for further use.
 
 	@param object object -- the object to register.
 	@return object -- the registered object.
 ]=]
-function objects_utils.register(object: types.object<any>): types.object<any>
+function object_utils.register(object: types.object<any>): types.object<any>
 	local new_object = table.clone(object)
 
 	--// created in kit_controller as an extension of the pillar's group
@@ -36,4 +35,4 @@ function objects_utils.register(object: types.object<any>): types.object<any>
 	return new_object
 end
 
-return objects_utils
+return object_utils

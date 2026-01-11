@@ -9,7 +9,7 @@ local std = require("@kit/std")
 local types = require("@kit/types")
 
 local players = std.players
-local objects = std.objects
+local object_utils = std.object
 local attributes = std.attributes
 local property = std.property
 
@@ -20,7 +20,7 @@ local ALLOWED_CFRAME_COMPONENTS = {
 	"ZVector",
 }
 
-local object = objects.register({
+local object = object_utils.register({
 	events = {},
 
 	attributes = {

@@ -8,14 +8,13 @@ local RunService = game:GetService("RunService")
 	@class players_utils
 	@tag std
 
-	this module provides utilities for working with players.
+	this module provides utilities for *working with players*.
 ]=]
 local players_utils = {}
 
 --[=[
 	@function from_hit
 	@within players_utils
-	@tag std
 	
 	get a player from a basepart.
 	
@@ -39,7 +38,6 @@ end
 --[=[
 	@function get_player
 	@within players_utils
-	@tag std
 	@client
 
 	gets the local player.
@@ -59,7 +57,6 @@ end
 --[=[
 	@function get_character
 	@within players_utils
-	@tag std
 
 	gets the character of a player.
 
@@ -79,7 +76,6 @@ end
 --[=[
 	@function get_humanoid
 	@within players_utils
-	@tag std
 
 	gets the character of a player.
 

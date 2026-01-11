@@ -37,8 +37,8 @@ p,
     content: none;
 }
 
-[data-theme="dark"] .hero__title::before {
-    filter: brightness(1.1);
+[data-theme="light"] .hero__title::before {
+    filter: brightness(0);
 }
 
 :root {
@@ -52,4 +52,80 @@ p,
     --ifm-color-primary-lighter: rgb(204, 205, 201);
     --ifm-color-primary-lightest: rgb(224, 225, 221);
     --ifm-code-font-size: 95%;
+}
+
+html[data-theme="light"] {
+    --ifm-background-surface-color: rgb(224, 225, 221);
+    --ifm-background-color: rgb(244, 245, 241);
+    --ifm-footer-background-color: rgb(184, 185, 181);
+}
+
+html[data-theme="dark"] {
+    --ifm-background-surface-color: rgb(13, 27, 42);
+    --ifm-background-color: rgb(33, 47, 62);
+    --ifm-footer-background-color: rgb(53, 67, 82);
+}
+
+[data-theme="light"] .button {
+    --ifm-button-background-color: rgb(53, 67, 82);
+    --ifm-button-color: rgb(224, 225, 221);
+    --ifm-button-border-color: rgb(53, 67, 82);
+
+    background-color: rgb(53, 67, 82);
+    color: rgb(224, 225, 221);
+    border-color: rgb(53, 67, 82);
+}
+
+[data-theme="dark"] .button {
+    --ifm-button-background-color: rgb(224, 225, 221);
+    --ifm-button-color: rgb(53, 67, 82);
+    --ifm-button-border-color: rgb(184, 185, 181);
+
+    background-color: rgb(224, 225, 221);
+    color: rgb(53, 67, 82);
+    border-color: rgb(184, 185, 181);
+}
+
+[class^="memberString"] {
+    padding: 15px 20px;
+    border-radius: 10px;
+}
+
+html[data-theme="light"] [class^="memberString"] {
+    background-color: rgb(224, 225, 221);
+}
+
+html[data-theme="dark"] [class^="memberString"] {
+    background-color: rgb(13, 27, 42);
+}
+
+[class^="luaClassTags"] {
+    transform: translateY(-20%);
+    margin-left: 1.25rem !important;
+}
+
+[class^="docTag"] {
+    margin: 0 !important;
+
+    border: 1px solid currentColor !important;
+    border-radius: 6px !important;
+
+    padding-left: 22px !important;
+}
+
+[class^="docTag"]::before {
+    display: none !important;
+}
+
+[class^="docTag"]::after {
+    top: 50% !important;
+    left: 7px !important;
+
+    border-radius: 2px !important;
+    background-color: currentColor;
+
+    width: 0.3rem !important;
+    height: 0.3rem !important;
+
+    rotate: 45deg;
 }

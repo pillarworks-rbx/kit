@@ -14,7 +14,7 @@ local version = "0.1.0"
 print(`\n{richterm.bold(`pillarworks internal sync tool {version}`)}`)
 print(`now syncing kit\n`)
 
-for _, command: commands.command in ipairs(commands) do
+for _, command: commands.command in pairs(commands) do
 	local name = command.command
 	local args = command.args
 	local colour = command.colour

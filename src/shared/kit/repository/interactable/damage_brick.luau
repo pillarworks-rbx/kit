@@ -2,18 +2,18 @@
 --!native
 
 local debugger = require("@shared/debugger")
+local misc_utils = require("@shared/utils/misc")
 
 local std = require("@kit/std")
 local types = require("@kit/types")
 
-local objects = std.objects
+local object_utils = std.object
 local attributes = std.attributes
 local players = std.players
-local utility = std.utility
 
 local network = require("@shared/network/client")
 
-local object = objects.register({
+local object = object_utils.register({
 	events = {},
 
 	attributes = {
@@ -45,7 +45,7 @@ function on_hit(self: object, hit: BasePart, _pillar: pillar)
 	local cooldown: number = object_attributes.cooldown
 
 	--// only fire once every few seconds
-	if utility.throttle(`damage {player.UserId} in {self.id}`, cooldown) then
+	if misc_utils.throttle(`damage {player.UserId} in {self.id}`, cooldown) then
 		--// send request damage event to server
 		network.kit.damage.fire(damage)
 	end

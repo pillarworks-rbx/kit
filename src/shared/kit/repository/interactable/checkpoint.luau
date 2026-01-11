@@ -2,18 +2,18 @@
 --!native
 
 local debugger = require("@shared/debugger")
+local misc_utils = require("@shared/utils/misc")
 
 local std = require("@kit/std")
 local types = require("@kit/types")
 
-local objects = std.objects
+local object_utils = std.object
 local attributes = std.attributes
 local players = std.players
-local utility = std.utility
 
 local checkpoint_utils = require("@shared/utils/checkpoints")
 
-local object = objects.register({
+local object = object_utils.register({
 	events = {},
 
 	attributes = {
@@ -45,7 +45,7 @@ function on_hit(self: object, hit: BasePart, pillar: pillar)
 	local checkpoint_cframe = self.instance.CFrame
 
 	--// only fire once every few seconds
-	if utility.throttle(`update checkpoint for {player.UserId} in {self.id}`, cooldown) then
+	if misc_utils.throttle(`update checkpoint for {player.UserId} in {self.id}`, cooldown) then
 		debugger.log(`update checkpoint for {player.UserId} as {self.id}`, "success")
 
 		checkpoint_utils.set(player, pillar, checkpoint_id, checkpoint_cframe)

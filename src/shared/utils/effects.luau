@@ -4,7 +4,6 @@
 --[=[
 	@interface effect
 	@within effect_utils
-	@tag utility
 	
 	@field effect string -- the name of the effect.
 	@field change number -- the amount of change the effect will apply.
@@ -38,8 +37,7 @@ local baselines = {} :: {
 	@class effect_utils
 	@tag utility
 	
-	this module contains effect utils that is used by the effects manager.
-	this module is responsible for managing and applying effects to players.
+	this module contains effect utils that are used by the *effects manager*. those utils are responsible for *managing* and *applying* effects to players.
 	
 	the effects that can be applied are:
 	- speed boost
@@ -50,7 +48,6 @@ local effect_utils = {}
 --[=[
 	@function get
 	@within effect_utils
-	@tag utility
 
 	get all effects for a player.
 
@@ -66,7 +63,6 @@ end
 --[=[
 	@function give
 	@within effect_utils
-	@tag utility
 
 	give an effect to a player.
 
@@ -89,7 +85,6 @@ end
 --[=[
 	@function remove
 	@within effect_utils
-	@tag utility
 
 	remove an effect from a player.
 
@@ -109,7 +104,6 @@ end
 --[=[
 	@function clear
 	@within effect_utils
-	@tag utility
 
 	remove all effects for a player.
 
@@ -122,7 +116,6 @@ end
 --[=[
 	@function step
 	@within effect_utils
-	@tag utility
 	@client
 
 	step all effects for the current player.

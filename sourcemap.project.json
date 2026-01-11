@@ -1,5 +1,5 @@
 {
-  "name": "pillarworks",
+  "name": "pillarworks sourcemap",
 
   "tree": {
     "$className": "DataModel",
@@ -11,7 +11,7 @@
         "$ignoreUnknownInstances": true,
         
         "$path": {
-          "optional": "roblox_packages"
+          "optional": "../../roblox_packages"
         }
       },
 
@@ -19,7 +19,7 @@
         "$ignoreUnknownInstances": true,
         
         "$path": {
-          "optional": "out/shared"
+          "optional": "../../src/shared"
         }
       },
 
@@ -27,13 +27,12 @@
     },
 
     "ServerScriptService": {
-      "$className": "ServerScriptService",
+      "$className": "../../ServerScriptService",
 
       "server": {
         "$ignoreUnknownInstances": true,
-        
         "$path": {
-          "optional": "out/server"
+          "optional": "../../src/server"
         }
       },
 
@@ -48,9 +47,8 @@
         
         "client": {
           "$ignoreUnknownInstances": true,
-          
           "$path": {
-            "optional": "out/client"
+            "optional": "../../src/client"
           }
         }
       },

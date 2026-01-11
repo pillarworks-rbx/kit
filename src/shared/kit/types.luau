@@ -7,13 +7,12 @@ local group = require("@pkg/group")
 	@class types
 	@tag kit
 	
-	this module contains types used by kit scripts.
+	this module contains types *used by kit scripts*.
 ]=]
 
 --[=[
 	@interface pillar
 	@within types
-	@tag kit
 	
 	@field id string -- the id of the pillar.
 	@field name string -- the name of the pillar.
@@ -34,7 +33,6 @@ export type pillar = {
 --[=[
 	@interface object
 	@within types
-	@tag kit
 	
 	@field id string -- the id of the object.
 	@field attributes { [string]: { [string]: any} } -- the attributes of the object.
@@ -62,7 +60,6 @@ export type object<T> = T & {
 --[=[
 	@interface pillar_data
 	@within types
-	@tag kit
 	
 	@field id string -- the id of the pillar.
 	@field group item_group -- the group of the pillar.

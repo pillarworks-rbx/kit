@@ -12,14 +12,11 @@ local root, create = fluid.root, fluid.create
 local debugger = require("@shared/debugger")
 local effects = require("@shared/utils/effects")
 
-local misc_utils = require("@shared/utils/misc")
+local utility = require("@shared/utils/misc")
 
 local root_component = require("@shared/ui/components/root")
 local frame_component = require("@shared/ui/components/frame")
 local boost_component = require("@shared/ui/components/kit/boost")
-
-local std = require("@kit/std")
-local utility = std.utility
 
 local effects_controller = {}
 
@@ -105,7 +102,7 @@ function effects_controller.start(self: self)
 					table.insert(effect_names, name)
 				end
 
-				if misc_utils.get_table_size(effect_names) > 0 then
+				if utility.get_table_size(effect_names) > 0 then
 					local effects_table = table.concat(effect_names, ", ")
 
 					debugger.log(`stepping player effects: {effects_table}`, "success")

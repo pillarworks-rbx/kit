@@ -1,5 +1,5 @@
-option ClientOutput = "../../src/shared/network/client.luau"
-option ServerOutput = "../../src/shared/network/server.luau"
+option ClientOutput = "../../../src/shared/network/client.luau"
+option ServerOutput = "../../../src/shared/network/server.luau"
 
 option Casing = Snake
 option WriteValidations = true

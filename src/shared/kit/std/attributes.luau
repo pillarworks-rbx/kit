@@ -6,7 +6,6 @@ local types = require("@kit/types")
 --[=[
 	@interface string_data
 	@within attribute_utils
-	@tag std
 	
 	@field enums { string }? -- the different options the attribute can take. if not provided, the attribute can take any string value.
 	@field default string -- the default value of the attribute.
@@ -25,7 +24,6 @@ export type string_data = {
 --[=[
 	@interface number_data
 	@within attribute_utils
-	@tag std
 	
 	@field min number? -- the minimum value the attribute can take. if not provided, the attribute can take any number value.
 	@field max number? -- the maximum value the attribute can take. if not provided, the attribute can take any number value.
@@ -46,7 +44,6 @@ export type number_data = {
 --[=[
 	@interface boolean_data
 	@within attribute_utils
-	@tag std
 	
 	@field default boolean -- the default value of the attribute.
 	@field __type "boolean" -- the type of the attribute. this will always be "boolean".
@@ -62,7 +59,6 @@ export type boolean_data = {
 --[=[
 	@interface cframe_data
 	@within attribute_utils
-	@tag std
 	
 	@field default CFrame -- the default value of the attribute.
 	@field __type "cframe" -- the type of the attribute. this will always be "cframe".
@@ -79,7 +75,7 @@ export type cframe_data = {
 	@class attribute_utils
 	@tag std
 	
-	this module provides utilities for working with attributes in kit objects.
+	this module provides utilities for *working with attributes* in *kit objects*.
 ]=]
 local attribute_utils = {}
 
@@ -88,7 +84,6 @@ attribute_utils.attributes = {}
 --[=[
 	@function get
 	@within attribute_utils
-	@tag std
 
 	get all attributes for an object.
 
@@ -150,7 +145,6 @@ end
 --[=[
 	@function attributes.string
 	@within attribute_utils
-	@tag std
 
 	create a new string attribute.
 
@@ -172,7 +166,6 @@ end
 --[=[
 	@function attributes.number
 	@within attribute_utils
-	@tag std
 
 	create a new number attribute.
 
@@ -196,7 +189,6 @@ end
 --[=[
 	@function attributes.boolean
 	@within attribute_utils
-	@tag std
 
 	create a new boolean attribute.
 
@@ -216,7 +208,6 @@ end
 --[=[
 	@function attributes.cframe
 	@within attribute_utils
-	@tag std
 
 	create a new cframe attribute.
 
