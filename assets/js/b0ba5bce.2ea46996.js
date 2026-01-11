@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdocs=self.webpackChunkdocs||[]).push([[575],{4410:t=>{t.exports=JSON.parse('{"sourceUrl":"https://github.com/pillarworks-rbx/kit/blob/main","baseUrl":"/kit/","classOrder":[{"section":"kit","tag":"kit"},{"section":"std","tag":"std"},{"section":"utility","tag":"utility"}],"apiCategories":[]}')}}]);

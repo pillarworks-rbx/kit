@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="plugin-moonwave plugin-id-moonwave" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.7.0">
+<title data-rh="true">attribute_utils | pillarworks kit</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://pillarworks-rbx.github.io/kit/api/attribute_utils"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docusaurus_tag" content="default"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docsearch:docusaurus_tag" content="default"><meta data-rh="true" property="og:title" content="attribute_utils | pillarworks kit"><meta data-rh="true" name="description" content="this module provides utilities for *working with attributes* in *kit objects*."><meta data-rh="true" property="og:description" content="this module provides utilities for *working with attributes* in *kit objects*."><link data-rh="true" rel="icon" href="/kit/images/logo.png"><link data-rh="true" rel="canonical" href="https://pillarworks-rbx.github.io/kit/api/attribute_utils"><link data-rh="true" rel="alternate" href="https://pillarworks-rbx.github.io/kit/api/attribute_utils" hreflang="en"><link data-rh="true" rel="alternate" href="https://pillarworks-rbx.github.io/kit/api/attribute_utils" hreflang="x-default"><link rel="stylesheet" href="/kit/assets/css/styles.02784d50.css">
+<script src="/kit/assets/js/runtime~main.f1924b9e.js" defer="defer"></script>
+<script src="/kit/assets/js/main.696fc9f1.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();null!==e?t(e):window.matchMedia("(prefers-color-scheme: dark)").matches?t("dark"):(window.matchMedia("(prefers-color-scheme: light)").matches,t("light"))}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/kit/"><b class="navbar__title text--truncate">pillarworks kit</b></a><a class="navbar__item navbar__link" href="/kit/docs/intro">Docs</a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/kit/api/">API</a></div><div class="navbar__items navbar__items--right"><a href="https://github.com/pillarworks-rbx/kit" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite" aria-pressed="false"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search"><span aria-label="expand searchbar" role="button" class="search-icon" tabindex="0"></span><input id="search_input_react" type="search" placeholder="Loading..." aria-label="Search" class="navbar__search-input search-bar" disabled=""></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0 docPageContainer_wNNk"><div class="docPage_Dpn1"><div class="docSidebarContainer_o_re"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/kit/api/types">kit</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role="button" aria-expanded="true" href="/kit/api/attribute_utils">std</a></div><ul style="display:block;overflow:visible;height:auto" class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/kit/api/attribute_utils">attribute_utils</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/kit/api/object_utils">object_utils</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/kit/api/players_utils">players_utils</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/kit/api/property_utils">property_utils</a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/kit/api/checkpoint_utils">utility</a></div></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/kit/api/debugger">debugger</a></li></ul></nav></div></div><main class="docMainContainer_HJE1"><div class="container padding-vert--lg"><div class="row"><div class="col docItemCol_MU3C"><div class="docItemContainer_Wv98"><article><div class="member_J0w1 markdown"><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_oUs_"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><header><h1 class="docTitle_mZRt" style="text-decoration:none"><span style="display:inline-block">attribute_utils</span></h1><div class="luaClassTags_EipM"><span class="docTag__6UZ" style="border-color:#70cc00;color:#70cc00">std</span></div><div>
+<p>this module provides utilities for <em>working with attributes</em> in <em>kit objects</em>.</p>
+</div></header><h2 class="anchor anchorWithStickyNavbar_LWe7" id="types">Types<a href="#types" class="hash-link" aria-label="Direct link to Types" title="Direct link to Types">​</a></h2><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="string_data"><code style="text-decoration:none">string_data</code><a href="#string_data" class="hash-link" aria-label="Direct link to string_data" title="Direct link to string_data">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/pillarworks-rbx/kit/blob/main/src/shared/kit/std/attributes.luau#L17"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code class="purple_ieR2">interface</code> <code>string_data<!-- --> <!-- -->{</code><div class="inset_uKQm"><div><code>enums<!-- -->: </code><code class="purple_ieR2">{</code><code class="blue_P4bS">string</code><code class="purple_ieR2">}</code><code class="blue_P4bS">?</code><span class="inlineDescription_G7Er">-- <span>
+<p>the different options the attribute can take. if not provided, the attribute can take any string value.</p>
+</span></span></div><div><code>default<!-- -->: </code><code class="blue_P4bS">string</code><span class="inlineDescription_G7Er">-- <span>
+<p>the default value of the attribute.</p>
+</span></span></div><div><code>__type<!-- -->: </code><code class="blue_P4bS">&quot;string&quot;</code><span class="inlineDescription_G7Er">-- <span>
+<p>the type of the attribute. this will always be "string".</p>
+</span></span></div></div><code>}</code></div><div>
+<p>represents a string attribute.</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="number_data"><code style="text-decoration:none">number_data</code><a href="#number_data" class="hash-link" aria-label="Direct link to number_data" title="Direct link to number_data">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/pillarworks-rbx/kit/blob/main/src/shared/kit/std/attributes.luau#L36"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code class="purple_ieR2">interface</code> <code>number_data<!-- --> <!-- -->{</code><div class="inset_uKQm"><div><code>min<!-- -->: </code><code class="blue_P4bS">number?</code><span class="inlineDescription_G7Er">-- <span>
+<p>the minimum value the attribute can take. if not provided, the attribute can take any number value.</p>
+</span></span></div><div><code>max<!-- -->: </code><code class="blue_P4bS">number?</code><span class="inlineDescription_G7Er">-- <span>
+<p>the maximum value the attribute can take. if not provided, the attribute can take any number value.</p>
+</span></span></div><div><code>default<!-- -->: </code><code class="blue_P4bS">number</code><span class="inlineDescription_G7Er">-- <span>
+<p>the default value of the attribute.</p>
+</span></span></div><div><code>__type<!-- -->: </code><code class="blue_P4bS">&quot;number&quot;</code><span class="inlineDescription_G7Er">-- <span>
+<p>the type of the attribute. this will always be "number".</p>
+</span></span></div></div><code>}</code></div><div>
+<p>represents a number attribute.</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="boolean_data"><code style="text-decoration:none">boolean_data</code><a href="#boolean_data" class="hash-link" aria-label="Direct link to boolean_data" title="Direct link to boolean_data">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/pillarworks-rbx/kit/blob/main/src/shared/kit/std/attributes.luau#L53"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code class="purple_ieR2">interface</code> <code>boolean_data<!-- --> <!-- -->{</code><div class="inset_uKQm"><div><code>default<!-- -->: </code><code class="blue_P4bS">boolean</code><span class="inlineDescription_G7Er">-- <span>
+<p>the default value of the attribute.</p>
+</span></span></div><div><code>__type<!-- -->: </code><code class="blue_P4bS">&quot;boolean&quot;</code><span class="inlineDescription_G7Er">-- <span>
+<p>the type of the attribute. this will always be "boolean".</p>
+</span></span></div></div><code>}</code></div><div>
+<p>represents a boolean attribute.</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="cframe_data"><code style="text-decoration:none">cframe_data</code><a href="#cframe_data" class="hash-link" aria-label="Direct link to cframe_data" title="Direct link to cframe_data">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/pillarworks-rbx/kit/blob/main/src/shared/kit/std/attributes.luau#L68"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code class="purple_ieR2">interface</code> <code>cframe_data<!-- --> <!-- -->{</code><div class="inset_uKQm"><div><code>default<!-- -->: </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="https://developer.roblox.com/en-us/api-reference/datatype/CFrame" target="_blank" rel="noopener noreferrer">CFrame<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound" style="color:gray;vertical-align:middle;margin-left:2px"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></code><span class="inlineDescription_G7Er">-- <span>
+<p>the default value of the attribute.</p>
+</span></span></div><div><code>__type<!-- -->: </code><code class="blue_P4bS">&quot;cframe&quot;</code><span class="inlineDescription_G7Er">-- <span>
+<p>the type of the attribute. this will always be "cframe".</p>
+</span></span></div></div><code>}</code></div><div>
+<p>represents a cframe attribute.</p>
+</div><h2 class="anchor anchorWithStickyNavbar_LWe7" id="functions">Functions<a href="#functions" class="hash-link" aria-label="Direct link to Functions" title="Direct link to Functions">​</a></h2><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="get"><code style="text-decoration:none">get</code><a href="#get" class="hash-link" aria-label="Direct link to get" title="Direct link to get">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/pillarworks-rbx/kit/blob/main/src/shared/kit/std/attributes.luau#L93"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>attribute_utils<!-- -->.</code><code class="green_DgR4">get</code><code>(</code><div class="inset_uKQm"><div><code>object<!-- -->: </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="/kit/api/types#object">object</a></code><span class="inlineDescription_G7Er">-- <span>
+<p>the object to get attributes for.</p>
+</span></span></div></div><code>) → </code><code class="purple_ieR2">{</code><span><code>[</code><code class="blue_P4bS">string</code><code>]</code></span><code>: </code><code class="blue_P4bS">any</code><code class="purple_ieR2">}</code><span class="inlineDescription_G7Er">-- <span>
+<p>the attributes for the object.</p>
+</span></span></div><div>
+<p>get all attributes for an object.</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="attributes.string"><code style="text-decoration:none">attributes.string</code><a href="#attributes.string" class="hash-link" aria-label="Direct link to attributes.string" title="Direct link to attributes.string">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/pillarworks-rbx/kit/blob/main/src/shared/kit/std/attributes.luau#L154"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>attribute_utils<!-- -->.</code><code class="green_DgR4">attributes.string</code><code>(</code><div class="inset_uKQm"><div><code>data<!-- -->: </code><code class="purple_ieR2">{</code><div class="inset_uKQm"><code>enums<!-- -->: </code><code class="green_DgR4">{</code><code class="blue_P4bS">string</code><code class="green_DgR4">}</code><code class="blue_P4bS">?</code><code class="purple_ieR2">,</code></div><div class="inset_uKQm"><code>default<!-- -->: </code><code class="blue_P4bS">string</code></div><code class="purple_ieR2">}</code><span class="inlineDescription_G7Er">-- <span>
+<p>the attribute data.</p>
+</span></span></div></div><code>) → </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="/kit/api/attribute_utils#string_data">string_data</a></code><span class="inlineDescription_G7Er">-- <span>
+<p>the actual attribute data, used by the "get" function.</p>
+</span></span></div><div>
+<p>create a new string attribute.</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="attributes.number"><code style="text-decoration:none">attributes.number</code><a href="#attributes.number" class="hash-link" aria-label="Direct link to attributes.number" title="Direct link to attributes.number">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/pillarworks-rbx/kit/blob/main/src/shared/kit/std/attributes.luau#L175"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>attribute_utils<!-- -->.</code><code class="green_DgR4">attributes.number</code><code>(</code><div class="inset_uKQm"><div><code>data<!-- -->: </code><code class="purple_ieR2">{</code><div class="inset_uKQm"><code>min<!-- -->: </code><code class="blue_P4bS">number?</code><code class="purple_ieR2">,</code></div><div class="inset_uKQm"><code>max<!-- -->: </code><code class="blue_P4bS">number?</code><code class="purple_ieR2">,</code></div><div class="inset_uKQm"><code>default<!-- -->: </code><code class="blue_P4bS">number</code></div><code class="purple_ieR2">}</code><span class="inlineDescription_G7Er">-- <span>
+<p>the attribute data.</p>
+</span></span></div></div><code>) → </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="/kit/api/attribute_utils#number_data">number_data</a></code><span class="inlineDescription_G7Er">-- <span>
+<p>the actual attribute data, used by the "get" function.</p>
+</span></span></div><div>
+<p>create a new number attribute.</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="attributes.boolean"><code style="text-decoration:none">attributes.boolean</code><a href="#attributes.boolean" class="hash-link" aria-label="Direct link to attributes.boolean" title="Direct link to attributes.boolean">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/pillarworks-rbx/kit/blob/main/src/shared/kit/std/attributes.luau#L198"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>attribute_utils<!-- -->.</code><code class="green_DgR4">attributes.boolean</code><code>(</code><div class="inset_uKQm"><div><code>data<!-- -->: </code><code class="purple_ieR2">{</code><code>default<!-- -->: </code><code class="blue_P4bS">boolean</code><code class="purple_ieR2">}</code><span class="inlineDescription_G7Er">-- <span>
+<p>the attribute data.</p>
+</span></span></div></div><code>) → </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="/kit/api/attribute_utils#boolean_data">boolean_data</a></code><span class="inlineDescription_G7Er">-- <span>
+<p>the actual attribute data, used by the "get" function.</p>
+</span></span></div><div>
+<p>create a new boolean attribute.</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="attributes.cframe"><code style="text-decoration:none">attributes.cframe</code><a href="#attributes.cframe" class="hash-link" aria-label="Direct link to attributes.cframe" title="Direct link to attributes.cframe">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/pillarworks-rbx/kit/blob/main/src/shared/kit/std/attributes.luau#L217"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>attribute_utils<!-- -->.</code><code class="green_DgR4">attributes.cframe</code><code>(</code><div class="inset_uKQm"><div><code>data<!-- -->: </code><code class="purple_ieR2">{</code><code>default<!-- -->: </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="https://developer.roblox.com/en-us/api-reference/datatype/CFrame" target="_blank" rel="noopener noreferrer">CFrame<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound" style="color:gray;vertical-align:middle;margin-left:2px"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></code><code class="purple_ieR2">}</code><span class="inlineDescription_G7Er">-- <span>
+<p>the attribute data.</p>
+</span></span></div></div><code>) → </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="/kit/api/attribute_utils#cframe_data">cframe_data</a></code><span class="inlineDescription_G7Er">-- <span>
+<p>the actual attribute data, used by the "get" function.</p>
+</span></span></div><div>
+<p>create a new cframe attribute.</p>
+</div></div></article></div><details><summary>Show raw api</summary><pre style="max-width:100%;white-space:pre-wrap">{
+    &quot;functions&quot;: [
+        {
+            &quot;name&quot;: &quot;get&quot;,
+            &quot;desc&quot;: &quot;get all attributes for an object.&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;object&quot;,
+                    &quot;desc&quot;: &quot;the object to get attributes for.&quot;,
+                    &quot;lua_type&quot;: &quot;object&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;the attributes for the object.&quot;,
+                    &quot;lua_type&quot;: &quot;{ [string]: any }&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;static&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 93,
+                &quot;path&quot;: &quot;src/shared/kit/std/attributes.luau&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;attributes.string&quot;,
+            &quot;desc&quot;: &quot;create a new string attribute.&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;data&quot;,
+                    &quot;desc&quot;: &quot;the attribute data.&quot;,
+                    &quot;lua_type&quot;: &quot;{ enums: { string }?, default: string }&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;the actual attribute data, used by the \&quot;get\&quot; function.&quot;,
+                    &quot;lua_type&quot;: &quot;string_data&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;static&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 154,
+                &quot;path&quot;: &quot;src/shared/kit/std/attributes.luau&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;attributes.number&quot;,
+            &quot;desc&quot;: &quot;create a new number attribute.&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;data&quot;,
+                    &quot;desc&quot;: &quot;the attribute data.&quot;,
+                    &quot;lua_type&quot;: &quot;{ min: number?, max: number?, default: number }&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;the actual attribute data, used by the \&quot;get\&quot; function.&quot;,
+                    &quot;lua_type&quot;: &quot;number_data&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;static&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 175,
+                &quot;path&quot;: &quot;src/shared/kit/std/attributes.luau&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;attributes.boolean&quot;,
+            &quot;desc&quot;: &quot;create a new boolean attribute.&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;data&quot;,
+                    &quot;desc&quot;: &quot;the attribute data.&quot;,
+                    &quot;lua_type&quot;: &quot;{ default: boolean }&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;the actual attribute data, used by the \&quot;get\&quot; function.&quot;,
+                    &quot;lua_type&quot;: &quot;boolean_data&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;static&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 198,
+                &quot;path&quot;: &quot;src/shared/kit/std/attributes.luau&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;attributes.cframe&quot;,
+            &quot;desc&quot;: &quot;create a new cframe attribute.&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;data&quot;,
+                    &quot;desc&quot;: &quot;the attribute data.&quot;,
+                    &quot;lua_type&quot;: &quot;{ default: CFrame }&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;the actual attribute data, used by the \&quot;get\&quot; function.&quot;,
+                    &quot;lua_type&quot;: &quot;cframe_data&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;static&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 217,
+                &quot;path&quot;: &quot;src/shared/kit/std/attributes.luau&quot;
+            }
+        }
+    ],
+    &quot;properties&quot;: [],
+    &quot;types&quot;: [
+        {
+            &quot;name&quot;: &quot;string_data&quot;,
+            &quot;desc&quot;: &quot;represents a string attribute.&quot;,
+            &quot;fields&quot;: [
+                {
+                    &quot;name&quot;: &quot;enums&quot;,
+                    &quot;lua_type&quot;: &quot;{ string }?&quot;,
+                    &quot;desc&quot;: &quot;the different options the attribute can take. if not provided, the attribute can take any string value.&quot;
+                },
+                {
+                    &quot;name&quot;: &quot;default&quot;,
+                    &quot;lua_type&quot;: &quot;string&quot;,
+                    &quot;desc&quot;: &quot;the default value of the attribute.&quot;
+                },
+                {
+                    &quot;name&quot;: &quot;__type&quot;,
+                    &quot;lua_type&quot;: &quot;\&quot;string\&quot;&quot;,
+                    &quot;desc&quot;: &quot;the type of the attribute. this will always be \&quot;string\&quot;.&quot;
+                }
+            ],
+            &quot;source&quot;: {
+                &quot;line&quot;: 17,
+                &quot;path&quot;: &quot;src/shared/kit/std/attributes.luau&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;number_data&quot;,
+            &quot;desc&quot;: &quot;represents a number attribute.&quot;,
+            &quot;fields&quot;: [
+                {
+                    &quot;name&quot;: &quot;min&quot;,
+                    &quot;lua_type&quot;: &quot;number?&quot;,
+                    &quot;desc&quot;: &quot;the minimum value the attribute can take. if not provided, the attribute can take any number value.&quot;
+                },
+                {
+                    &quot;name&quot;: &quot;max&quot;,
+                    &quot;lua_type&quot;: &quot;number?&quot;,
+                    &quot;desc&quot;: &quot;the maximum value the attribute can take. if not provided, the attribute can take any number value.&quot;
+                },
+                {
+                    &quot;name&quot;: &quot;default&quot;,
+                    &quot;lua_type&quot;: &quot;number&quot;,
+                    &quot;desc&quot;: &quot;the default value of the attribute.&quot;
+                },
+                {
+                    &quot;name&quot;: &quot;__type&quot;,
+                    &quot;lua_type&quot;: &quot;\&quot;number\&quot;&quot;,
+                    &quot;desc&quot;: &quot;the type of the attribute. this will always be \&quot;number\&quot;.&quot;
+                }
+            ],
+            &quot;source&quot;: {
+                &quot;line&quot;: 36,
+                &quot;path&quot;: &quot;src/shared/kit/std/attributes.luau&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;boolean_data&quot;,
+            &quot;desc&quot;: &quot;represents a boolean attribute.&quot;,
+            &quot;fields&quot;: [
+                {
+                    &quot;name&quot;: &quot;default&quot;,
+                    &quot;lua_type&quot;: &quot;boolean&quot;,
+                    &quot;desc&quot;: &quot;the default value of the attribute.&quot;
+                },
+                {
+                    &quot;name&quot;: &quot;__type&quot;,
+                    &quot;lua_type&quot;: &quot;\&quot;boolean\&quot;&quot;,
+                    &quot;desc&quot;: &quot;the type of the attribute. this will always be \&quot;boolean\&quot;.&quot;
+                }
+            ],
+            &quot;source&quot;: {
+                &quot;line&quot;: 53,
+                &quot;path&quot;: &quot;src/shared/kit/std/attributes.luau&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;cframe_data&quot;,
+            &quot;desc&quot;: &quot;represents a cframe attribute.&quot;,
+            &quot;fields&quot;: [
+                {
+                    &quot;name&quot;: &quot;default&quot;,
+                    &quot;lua_type&quot;: &quot;CFrame&quot;,
+                    &quot;desc&quot;: &quot;the default value of the attribute.&quot;
+                },
+                {
+                    &quot;name&quot;: &quot;__type&quot;,
+                    &quot;lua_type&quot;: &quot;\&quot;cframe\&quot;&quot;,
+                    &quot;desc&quot;: &quot;the type of the attribute. this will always be \&quot;cframe\&quot;.&quot;
+                }
+            ],
+            &quot;source&quot;: {
+                &quot;line&quot;: 68,
+                &quot;path&quot;: &quot;src/shared/kit/std/attributes.luau&quot;
+            }
+        }
+    ],
+    &quot;name&quot;: &quot;attribute_utils&quot;,
+    &quot;desc&quot;: &quot;this module provides utilities for *working with attributes* in *kit objects*.&quot;,
+    &quot;tags&quot;: [
+        &quot;std&quot;
+    ],
+    &quot;source&quot;: {
+        &quot;line&quot;: 80,
+        &quot;path&quot;: &quot;src/shared/kit/std/attributes.luau&quot;
+    }
+}</pre></details></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#types" class="table-of-contents__link toc-highlight">Types</a><ul><li><a href="#boolean_data" class="table-of-contents__link toc-highlight">boolean_data</a></li><li><a href="#cframe_data" class="table-of-contents__link toc-highlight">cframe_data</a></li><li><a href="#number_data" class="table-of-contents__link toc-highlight">number_data</a></li><li><a href="#string_data" class="table-of-contents__link toc-highlight">string_data</a></li></ul></li><li><a href="#functions" class="table-of-contents__link toc-highlight">Functions</a><ul><li><a href="#attributes.boolean" class="table-of-contents__link toc-highlight">.attributes.boolean</a></li><li><a href="#attributes.cframe" class="table-of-contents__link toc-highlight">.attributes.cframe</a></li><li><a href="#attributes.number" class="table-of-contents__link toc-highlight">.attributes.number</a></li><li><a href="#attributes.string" class="table-of-contents__link toc-highlight">.attributes.string</a></li><li><a href="#get" class="table-of-contents__link toc-highlight">.get</a></li></ul></li></ul></div></div></div></div></main></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">socials</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://discord.gg/EFay8r3UsR" target="_blank" rel="noopener noreferrer" class="footer__link-item">discord server<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://www.roblox.com/communities/637088148/team-pillarworks" target="_blank" rel="noopener noreferrer" class="footer__link-item">roblox group<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">copyright © 2026 pillarworks-rbx. built with moonwave and docusaurus</div></div></div></footer></div>
+</body>
+</html>
