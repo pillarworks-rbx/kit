@@ -100,7 +100,7 @@ html[data-theme="dark"] [class^="memberString"] {
 }
 
 [class^="luaClassTags"] {
-    transform: translateY(-20%);
+    transform: translateY(-25%);
     margin-left: 1.25rem !important;
 }
 
