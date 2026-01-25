@@ -1,6 +1,6 @@
 # pillar creation kit
 
-check back later for documentation. just use the place file at assets/place.rbxl.
+you can view documentation [here](https://pillarworks-rbx.github.io/kit/).
 
 ## non-rojo users
 1. open the place file at assets/place.rbxl.
