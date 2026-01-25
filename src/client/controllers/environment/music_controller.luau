@@ -16,8 +16,8 @@ music_controller.identifier = "music_controller"
 export type self = typeof(music_controller)
 
 export type sound = {
-    audio: string,
-    volume: number
+	audio: string,
+	volume: number,
 }
 
 local ZONE_TAG = "pillarworks_music"
@@ -36,16 +36,16 @@ function music_controller.start(self: self)
 	self.group = group.create()
 
 	for _, zone in pairs(CollectionService:GetTagged(ZONE_TAG)) do
-    	if table.find(zones, zone) then
-        	continue
-    	end
+		if table.find(zones, zone) then
+			continue
+		end
 
 		local sound = zone:FindFirstChild("audio") :: Sound?
 
 		if sound then
 			zone_sounds[zone] = {
 				audio = sound.SoundId,
-				volume = sound.Volume
+				volume = sound.Volume,
 			}
 
 			sound:Destroy()
@@ -55,7 +55,7 @@ function music_controller.start(self: self)
 	end
 
 	warn("zones:", zones)
-    warn("zone_sounds:", zone_sounds)
+	warn("zone_sounds:", zone_sounds)
 
 	local current_zone: BasePart? = nil
 	local active_tween: Tween? = nil

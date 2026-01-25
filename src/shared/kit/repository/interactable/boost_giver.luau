@@ -45,7 +45,7 @@ local object = object_utils.register({
 })
 
 export type pillar = types.pillar
-export type object = types.object<typeof(object)>
+export type object = types.processed_object<typeof(object)>
 
 function on_hit(self: object, hit: BasePart, _pillar: pillar)
 	local object_attributes = attributes.get(self)
@@ -100,13 +100,13 @@ function object.events.load(self: object, pillar: pillar)
 
 		on_hit(self, hit, pillar)
 	end))
-	
+
 	debugger.log(`object {self.id} has successfully loaded`, "success")
 end
 
 function object.events.unload(self: object, _pillar: pillar)
 	self.group:clean()
-	
+
 	debugger.log(`object {self.id} has successfully unloaded`, "success")
 end
 

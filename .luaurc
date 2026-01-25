@@ -8,9 +8,7 @@
     
     "kit": "./src/shared/kit",
     
-    "libsync": ".lune/libsync",
-    "vendor": ".lune/vendor",
-    
-    "lune": "~/.lune/.typedefs/0.10.4/"
+    "lune": "~/.lune/.typedefs/0.10.4/",
+    "libsync": "./.lune/libsync"
   }
 }

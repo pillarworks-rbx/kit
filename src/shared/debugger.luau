@@ -126,8 +126,10 @@ end
 	starts the debugger.
 	
 	**this can only be called once. if you want to call it again, call `debugger.cleanup()` first.**
+	
+	the validate parameter is passed to the `debugger.render()` function.
 
-	@param validate (() -> boolean)? -- if specified, returns a boolean which determines if the debugger should be rendered.
+	@param validate (() -> boolean)? -- if specified, returns a boolean which determines if the debugger should be rendered. 
 ]=]
 function debugger.start(validate: (() -> boolean)?)
 	if started then
@@ -174,6 +176,8 @@ end
 	cleans outputted logs and all debuggers.
 	
 	this resets the started flag to false.
+	
+	**you must call this before calling `debugger.start()` more than one time.**
 ]=]
 function debugger.cleanup()
 	table.clear(debuggers)

@@ -13,11 +13,11 @@ local combined_controllers = {} :: { [string]: any }
 local client_controllers = parent.controllers
 
 function parse_fn(instance: Instance)
-    if instance and instance:IsA("ModuleScript") then
-        local module = require(instance)
-        
-        table.insert(combined_controllers, module)
-    end
+	if instance and instance:IsA("ModuleScript") then
+		local module = require(instance)
+
+		table.insert(combined_controllers, module)
+	end
 end
 
 --// copy client controllers to combined controllers

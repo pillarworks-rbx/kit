@@ -24,12 +24,12 @@ local object = object_utils.register({
 })
 
 export type pillar = types.pillar
-export type object = types.object<typeof(object)>
+export type object = types.processed_object<typeof(object)>
 
 function object.events.load(self: object, _pillar: pillar)
-    local instance = self.instance
-    local arrow = instance:FindFirstChild("arrow")
-    
+	local instance = self.instance
+	local arrow = instance:FindFirstChild("arrow")
+
 	self.group:add(RunService.PreRender:Connect(function(delta_time: number)
 		delta_time = math.clamp(delta_time, 0, 1)
 

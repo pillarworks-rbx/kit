@@ -28,7 +28,7 @@ local object = object_utils.register({
 })
 
 export type pillar = types.pillar
-export type object = types.object<typeof(object)>
+export type object = types.processed_object<typeof(object)>
 
 function on_hit(self: object, hit: BasePart, pillar: pillar)
 	local player = players.from_hit(hit) :: Player?
@@ -41,7 +41,7 @@ function on_hit(self: object, hit: BasePart, pillar: pillar)
 
 	local checkpoint_id: string = object_attributes.checkpoint_id
 	local cooldown: number = object_attributes.cooldown
-	
+
 	local checkpoint_cframe = self.instance.CFrame
 
 	--// only fire once every few seconds

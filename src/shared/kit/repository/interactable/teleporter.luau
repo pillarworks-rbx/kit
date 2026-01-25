@@ -30,7 +30,7 @@ local object = object_utils.register({
 })
 
 export type pillar = types.pillar
-export type object = types.object<typeof(object)>
+export type object = types.processed_object<typeof(object)>
 
 function on_hit(self: object, hit: BasePart, _pillar: pillar)
 	local object_attributes = attributes.get(self)
@@ -51,60 +51,60 @@ function on_hit(self: object, hit: BasePart, _pillar: pillar)
 	if not root then
 		return
 	end
-	
+
 	local instance = self.instance
-    
-    if not instance or not instance:IsA("Model") then
-        return
-    end
-    
-    local origin = instance:FindFirstChild("origin") :: Part?
-    local destination = instance:FindFirstChild("destination") :: Part?
-    
-    if not origin or not destination then
-        return
-    end
+
+	if not instance or not instance:IsA("Model") then
+		return
+	end
+
+	local origin = instance:FindFirstChild("origin") :: Part?
+	local destination = instance:FindFirstChild("destination") :: Part?
+
+	if not origin or not destination then
+		return
+	end
 
 	if misc_utils.throttle(`teleport {player.UserId} in {self.id}`, cooldown) then
-	    local seamless_offset = if seamless then origin.CFrame:ToObjectSpace(root.CFrame) else CFrame.new()
+		local seamless_offset = if seamless then origin.CFrame:ToObjectSpace(root.CFrame) else CFrame.new()
 		local true_offset = offset * seamless_offset:Inverse()
-		
+
 		local destination_cframe = destination.CFrame * CFrame.new(0, character:GetExtentsSize().Y / 2, 0) * true_offset
-		
+
 		root.CFrame = destination_cframe
 	end
 end
 
 function object.events.load(self: object, pillar: pillar)
-    local instance = self.instance
-    
-    if not instance or not instance:IsA("Model") then
-        debugger.log(`object {self.id} is not a valid model`, "error")
-        
-        return
-    end
-    
-    local origin = instance:FindFirstChild("origin") :: Part?
-    local destination = instance:FindFirstChild("destination") :: Part?
-    
-    if not origin or not destination then
-        debugger.log(`object {self.id} does not have an origin or destination`, "warn")
-        
-        return
-    end
-    
-    self.group:add(origin.Touched:Connect(function(hit: BasePart)
-        debugger.log(`object {self.id} has been hit by "{hit:GetFullName()}"`, "success")
-        
+	local instance = self.instance
+
+	if not instance or not instance:IsA("Model") then
+		debugger.log(`object {self.id} is not a valid model`, "error")
+
+		return
+	end
+
+	local origin = instance:FindFirstChild("origin") :: Part?
+	local destination = instance:FindFirstChild("destination") :: Part?
+
+	if not origin or not destination then
+		debugger.log(`object {self.id} does not have an origin or destination`, "warn")
+
+		return
+	end
+
+	self.group:add(origin.Touched:Connect(function(hit: BasePart)
+		debugger.log(`object {self.id} has been hit by "{hit:GetFullName()}"`, "success")
+
 		on_hit(self, hit, pillar)
 	end))
-    
-    debugger.log(`object {self.id} has successfully loaded`, "success")
+
+	debugger.log(`object {self.id} has successfully loaded`, "success")
 end
 
 function object.events.unload(self: object, _pillar: pillar)
 	self.group:clean()
-	
+
 	debugger.log(`object {self.id} has successfully unloaded`, "success")
 end
 

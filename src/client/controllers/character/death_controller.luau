@@ -36,7 +36,7 @@ end
 function death_controller.stop(self: self)
 	--// cleanup this controller's group instance
 	task.defer(function()
-	    self.group:clean()
+		self.group:clean()
 	end)
 end
 

@@ -33,7 +33,7 @@ function debug_controller.start(self: self)
 
 	--// initialize debugger
 	local debugger_open = true
-	
+
 	debugger.cleanup()
 
 	debugger.start(function()
@@ -55,10 +55,10 @@ function debug_controller.start(self: self)
 			local message_status = message.status
 			local message_text = message.message
 			local message_count = message.count
-			
+
 			local formatted_time = format_ms(message_time)
 			local text = `[{formatted_time}] [{message_status}] {message_text}`
-			
+
 			if message.count > 1 then
 				text = `{text} (x{message_count})`
 			end

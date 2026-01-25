@@ -3,24 +3,19 @@
 
 local RunService = game:GetService("RunService")
 
-local debugger = require("@shared/debugger")
+local debugger = require(game:GetService("ReplicatedStorage"):FindFirstChild("shared"):FindFirstChild("debugger"))
 
-local std = require("@kit/std")
-local types = require("@kit/types")
+local std =
+	require(game:GetService("ReplicatedStorage"):FindFirstChild("shared"):FindFirstChild("kit"):FindFirstChild("std"))
+local types =
+	require(game:GetService("ReplicatedStorage"):FindFirstChild("shared"):FindFirstChild("kit"):FindFirstChild("types"))
 
 local object_utils = std.object
-local attributes = std.attributes
 
 local object = object_utils.register({
 	events = {},
 
-	attributes = {
-		speed = attributes.attributes.number({
-			min = 1,
-			max = 100,
-			default = 5,
-		}),
-	},
+	attributes = {},
 })
 
 export type pillar = types.pillar
@@ -30,18 +25,7 @@ function object.events.load(self: object, _pillar: pillar)
 	self.group:add(RunService.PreRender:Connect(function(delta_time: number)
 		delta_time = math.clamp(delta_time, 0, 1)
 
-		local object_attributes = attributes.get(self)
-		local speed = object_attributes.speed * delta_time
-
-		local instance = self.instance
-
-		if not instance or not instance:IsA("Model") then
-			debugger.log(`instance not found`, "warn")
-
-			return
-		end
-
-		instance:PivotTo(instance:GetPivot() * CFrame.Angles(0, speed, 0))
+		-- do whatever here
 	end))
 
 	debugger.log(`object {self.id} has successfully loaded`, "success")
@@ -54,3 +38,4 @@ function object.events.unload(self: object, _pillar: pillar)
 end
 
 return object
+

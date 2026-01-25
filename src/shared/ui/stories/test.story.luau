@@ -12,16 +12,16 @@ local CreateGenericStory = ui_labs.CreateGenericStory
 local create, root = fluid.create, fluid.root
 
 local controls = {
-   visible = true
+	visible = true,
 }
 
 local story = CreateGenericStory({
 	controls = controls,
 }, function(properties)
-    local target, converted, _controls = properties.target, properties.converted, properties.controls
-    local states = CreateControlStates(converted, controls, function<T>(control: T): fluid.Source<T>
-        return fluid.source(control)
-    end)
+	local target, converted, _controls = properties.target, properties.converted, properties.controls
+	local states = CreateControlStates(converted, controls, function<T>(control: T): fluid.Source<T>
+		return fluid.source(control)
+	end)
 
 	local component
 
@@ -35,15 +35,15 @@ local story = CreateGenericStory({
 	end)
 
 	properties.subscribe(function(values: { [string]: any })
-        UpdateControlStates(states, converted, values, function(state, value)
-            state(value)
-         end)
+		UpdateControlStates(states, converted, values, function(state, value)
+			state(value)
+		end)
 	end)
 
 	return function()
-    	if component then
-    	    component:Destroy()
-    	end
+		if component then
+			component:Destroy()
+		end
 	end
 end)
 

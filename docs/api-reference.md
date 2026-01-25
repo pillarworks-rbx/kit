@@ -1,9 +1,8 @@
 ---
-sidebar_position: 2
+sidebar_position: 999
 ---
 
 # api reference
-
 the api reference, located [here](/api), contains a descriptive overview of all the utility functions provided by the kit, including it's standard library and other utility modules.
 
 ## kit documentation

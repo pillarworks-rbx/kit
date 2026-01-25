@@ -17,7 +17,7 @@ local object = object_utils.register({
 })
 
 export type pillar = types.pillar
-export type object = types.object<typeof(object)>
+export type object = types.processed_object<typeof(object)>
 
 local EFFECT_COLOUR_PROPERTIES = {
 	"Color",

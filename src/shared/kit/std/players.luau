@@ -15,9 +15,9 @@ local players_utils = {}
 --[=[
 	@function from_hit
 	@within players_utils
-	
+
 	get a player from a basepart.
-	
+
 	@param hit BasePart -- the hit to check.
 	@return Player? -- the player that was hit. this can also return nil if no player was hit.
 ]=]
@@ -45,9 +45,9 @@ end
 	@return Player? -- the local player. this returns nil if the player is not found or if it's called on the server.
 ]=]
 function players_utils.get_player(): Player?
-    if not RunService:IsClient() then
-        return nil
-    end
+	if not RunService:IsClient() then
+		return nil
+	end
 
 	local player = Players.LocalPlayer or Players.PlayerAdded:Wait()
 

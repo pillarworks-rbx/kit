@@ -23,7 +23,7 @@ local object = object_utils.register({
 })
 
 export type pillar = types.pillar
-export type object = types.object<typeof(object)>
+export type object = types.processed_object<typeof(object)>
 
 function on_hit(self: object, hit: BasePart, _pillar: pillar)
 	local object_attributes = attributes.get(self)
@@ -50,22 +50,22 @@ function object.events.load(self: object, pillar: pillar)
 
 	if not instance or not instance:IsA("Part") then
 		debugger.log(`object {self.id} is not a valid part`, "error")
-		
+
 		return
 	end
 
 	self.group:add(instance.Touched:Connect(function(hit: BasePart)
 		debugger.log(`object {self.id} has been hit by "{hit:GetFullName()}"`, "success")
-		
+
 		on_hit(self, hit, pillar)
 	end))
-	
+
 	debugger.log(`object {self.id} has successfully loaded`, "success")
 end
 
 function object.events.unload(self: object, _pillar: pillar)
 	self.group:clean()
-	
+
 	debugger.log(`object {self.id} has successfully unloaded`, "success")
 end
 

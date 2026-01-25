@@ -29,12 +29,12 @@ local object = object_utils.register({
 })
 
 export type pillar = types.pillar
-export type object = types.object<typeof(object)>
+export type object = types.processed_object<typeof(object)>
 
 function object.events.load(self: object, _pillar: pillar)
 	self.group:add(RunService.PreRender:Connect(function(delta_time: number)
-	    delta_time = math.clamp(delta_time, 0, 1)
-		
+		delta_time = math.clamp(delta_time, 0, 1)
+
 		local object_attributes = attributes.get(self)
 
 		local object_enabled = object_attributes.enabled
@@ -42,7 +42,7 @@ function object.events.load(self: object, _pillar: pillar)
 
 		if not object_enabled then
 			debugger.log(`object {self.id} is disabled`, "warn")
-			
+
 			return
 		end
 
@@ -50,7 +50,7 @@ function object.events.load(self: object, _pillar: pillar)
 
 		if not player then
 			debugger.log(`player not found`, "warn")
-			
+
 			return
 		end
 
@@ -58,7 +58,7 @@ function object.events.load(self: object, _pillar: pillar)
 
 		if not character then
 			debugger.log(`character not found`, "warn")
-			
+
 			return
 		end
 
@@ -66,7 +66,7 @@ function object.events.load(self: object, _pillar: pillar)
 
 		if not root then
 			debugger.log(`root part not found`, "warn")
-			
+
 			return
 		end
 
@@ -74,7 +74,7 @@ function object.events.load(self: object, _pillar: pillar)
 
 		if not instance or not instance:IsA("Part") then
 			debugger.log(`instance not found`, "warn")
-			
+
 			return
 		end
 
@@ -85,13 +85,13 @@ function object.events.load(self: object, _pillar: pillar)
 
 		instance.CanCollide = player_position.Y >= target.Y
 	end))
-	
+
 	debugger.log(`object {self.id} has successfully loaded`, "success")
 end
 
 function object.events.unload(self: object, _pillar: pillar)
 	self.group:clean()
-	
+
 	debugger.log(`object {self.id} has successfully unloaded`, "success")
 end
 

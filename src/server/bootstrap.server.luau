@@ -10,11 +10,11 @@ local combined_services = {} :: { [string]: any }
 local server_services = parent.services
 
 function parse_fn(instance: Instance)
-    if instance and instance:IsA("ModuleScript") then
-        local module = require(instance)
-        
-        table.insert(combined_services, module)
-    end
+	if instance and instance:IsA("ModuleScript") then
+		local module = require(instance)
+
+		table.insert(combined_services, module)
+	end
 end
 
 --// copy server services to combined services

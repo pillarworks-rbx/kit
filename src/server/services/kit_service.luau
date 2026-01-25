@@ -37,7 +37,7 @@ function kit_service.start(self: self)
 
 	local pillars = CollectionService:GetTagged(KIT_TAG)
 	local pillar = pillars[1]
-	
+
 	if pillar and pillar:HasTag(KIT_TAG) and pillar:IsA("Folder") then
 		self:prepare_pillar(pillar)
 	end

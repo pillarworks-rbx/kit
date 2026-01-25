@@ -7,7 +7,7 @@ check back later for documentation. just use the place file at assets/place.rbxl
 2. nothing else is needed.
 
 ## rojo users
-1. install rokit and pesde.
+1. install rokit *(the toolchain manager)* and pesde *(the package manager)*.
 2. run `rokit install` in a terminal or command prompt.
 3. run `rojo plugin install` in a terminal or command prompt.
 4. run `pesde install` in a terminal or command prompt.

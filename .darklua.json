@@ -5,15 +5,7 @@
 
       "current": {
         "name": "path",
-
-        "sources": {
-          "@server": "./src/server",
-          "@shared": "./src/shared",
-          "@client": "./src/client",
-
-          "@pkg": "./roblox_packages",
-          "@kit": "./src/shared/kit"
-        }
+        "use_luau_configuration": true
       },
 
       "target": {

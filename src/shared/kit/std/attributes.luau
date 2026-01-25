@@ -6,10 +6,10 @@ local types = require("@kit/types")
 --[=[
 	@interface string_data
 	@within attribute_utils
-	
+
 	@field enums { string }? -- the different options the attribute can take. if not provided, the attribute can take any string value.
 	@field default string -- the default value of the attribute.
-	
+
 	@field __type "string" -- the type of the attribute. this will always be "string".
 
 	represents a string attribute.
@@ -24,11 +24,11 @@ export type string_data = {
 --[=[
 	@interface number_data
 	@within attribute_utils
-	
+
 	@field min number? -- the minimum value the attribute can take. if not provided, the attribute can take any number value.
 	@field max number? -- the maximum value the attribute can take. if not provided, the attribute can take any number value.
 	@field default number -- the default value of the attribute.
-	
+
 	@field __type "number" -- the type of the attribute. this will always be "number".
 
 	represents a number attribute.
@@ -44,7 +44,7 @@ export type number_data = {
 --[=[
 	@interface boolean_data
 	@within attribute_utils
-	
+
 	@field default boolean -- the default value of the attribute.
 	@field __type "boolean" -- the type of the attribute. this will always be "boolean".
 
@@ -59,7 +59,7 @@ export type boolean_data = {
 --[=[
 	@interface cframe_data
 	@within attribute_utils
-	
+
 	@field default CFrame -- the default value of the attribute.
 	@field __type "cframe" -- the type of the attribute. this will always be "cframe".
 
@@ -74,7 +74,7 @@ export type cframe_data = {
 --[=[
 	@class attribute_utils
 	@tag std
-	
+
 	this module provides utilities for *working with attributes* in *kit objects*.
 ]=]
 local attribute_utils = {}

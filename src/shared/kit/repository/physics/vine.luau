@@ -38,7 +38,7 @@ local object = object_utils.register({
 })
 
 export type pillar = types.pillar
-export type object = types.object<typeof(object)>
+export type object = types.processed_object<typeof(object)>
 
 local overlap_params = OverlapParams.new()
 
@@ -167,26 +167,26 @@ function object.events.load(self: object, _pillar: pillar)
 		align_orientation.Responsiveness = 8
 		align_orientation.Mode = Enum.OrientationAlignmentMode.TwoAttachment
 		align_orientation.Parent = root
-		
+
 		humanoid.AutoRotate = true
 		humanoid:ChangeState(Enum.HumanoidStateType.Physics)
 
 		ride_group:add(RunService.Heartbeat:Connect(function(_delta_time: number)
 			local bar_velocity = bar.AssemblyLinearVelocity
 			local rope_dir = (bar.Position - attachment_part.Position).Unit
-			
+
 			local tangential_velocity = bar_velocity - rope_dir * bar_velocity:Dot(rope_dir)
 			local input_force = Vector3.zero
-			
+
 			if move_dir.Magnitude > 0 then
 				local tangent_input = (move_dir - move_dir:Dot(rope_dir) * rope_dir)
 
 				input_force = tangent_input * SWING_FORCE
 			end
-			
+
 			local damping_force = -tangential_velocity * DAMPING
 			local total_force = input_force + damping_force
-			
+
 			if total_force.Magnitude > MAX_FORCE then
 				total_force = total_force.Unit * MAX_FORCE
 			end
@@ -196,7 +196,7 @@ function object.events.load(self: object, _pillar: pillar)
 
 		ride_group:add(function()
 			bar:Destroy()
-			
+
 			align_position:Destroy()
 			align_orientation:Destroy()
 		end)

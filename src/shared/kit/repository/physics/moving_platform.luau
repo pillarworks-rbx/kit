@@ -28,15 +28,15 @@ local object = object_utils.register({
 })
 
 export type pillar = types.pillar
-export type object = types.object<typeof(object)>
+export type object = types.processed_object<typeof(object)>
 
 function object.events.load(self: object, _pillar: pillar)
 	local current_index, next_index = 1, 2
 	local alpha, direction = 0, 1
 
 	self.group:add(RunService.PreRender:Connect(function(delta_time: number)
-	    delta_time = math.clamp(delta_time, 0, 1)
-					
+		delta_time = math.clamp(delta_time, 0, 1)
+
 		local object_attributes = attributes.get(self)
 
 		local platform_loop = object_attributes.loop
@@ -64,7 +64,7 @@ function object.events.load(self: object, _pillar: pillar)
 		if #position_parts <= 1 then
 			return
 		end
-		
+
 		local current_position = position_parts[current_index].Position
 		local next_position = position_parts[next_index].Position
 
@@ -98,21 +98,21 @@ function object.events.load(self: object, _pillar: pillar)
 				end
 			end
 		end
-		
+
 		local cframe_a = position_parts[current_index].CFrame
 		local cframe_b = position_parts[next_index].CFrame
-		
+
 		local target_cframe = cframe_a:Lerp(cframe_b, alpha)
-		
+
 		platform:PivotTo(target_cframe)
 	end))
-	
+
 	debugger.log(`object {self.id} has successfully loaded`, "success")
 end
 
 function object.events.unload(self: object, _pillar: pillar)
 	self.group:clean()
-	
+
 	debugger.log(`object {self.id} has successfully unloaded`, "success")
 end
 

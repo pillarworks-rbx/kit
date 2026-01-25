@@ -57,13 +57,13 @@ p,
 html[data-theme="light"] {
     --ifm-background-surface-color: rgb(224, 225, 221);
     --ifm-background-color: rgb(244, 245, 241);
-    --ifm-footer-background-color: rgb(184, 185, 181);
+    --ifm-footer-background-color: rgb(184, 185, 181) !important;
 }
 
 html[data-theme="dark"] {
     --ifm-background-surface-color: rgb(13, 27, 42);
     --ifm-background-color: rgb(33, 47, 62);
-    --ifm-footer-background-color: rgb(53, 67, 82);
+    --ifm-footer-background-color: rgb(53, 67, 82) !important;
 }
 
 [data-theme="light"] .button {
