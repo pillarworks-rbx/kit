@@ -2,7 +2,7 @@
 --!native
 
 local iris = require("@pkg/iris").Init()
-local stack = require("@shared/modules/stack")
+local stack = require("@pkg/stack")
 
 --[=[
 	@interface log
