@@ -32,7 +32,7 @@
       "server": {
         "$ignoreUnknownInstances": true,
         "$path": {
-          "optional": "src/server"
+          "optional": "../../src/server"
         }
       },
 

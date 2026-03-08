@@ -1,161 +1,171 @@
 --!optimize 2
 --!native
 
+--[=[
+	@interface effect
+	@within effect_utils
+	
+	@field effect string -- the name of the effect.
+	@field change number -- the amount of change the effect will apply.
+	
+	@field lifetime number -- the time, in seconds, the effect will last.
+	@field start number -- the timestamp of when the most recent time the effect was applied.
+
+	represents an active effect that the player has.
+]=]
 export type effect = {
 	effect: string,
-	change: string,
+	change: number,
 
 	lifetime: number,
 	start: number,
+}
 
-	original_data: {
+local std = require("@kit/std")
+local players = std.players
+
+local effects = {} :: { [Player]: { [string]: effect } }
+
+local baselines = {} :: {
+	[Player]: {
 		speed: number,
 		jump: number,
 	},
 }
 
-export type handler_type = "apply" | "reset"
+--[=[
+	@class effect_utils
+	@tag utility
+	
+	this module contains effect utils that are used by the *effects manager*. those utils are responsible for *managing* and *applying* effects to players.
+	
+	the effects that can be applied are:
+	- speed boost
+	- jump boost
+]=]
+local effect_utils = {}
 
-local std = require("@kit/std")
-local players = std.players
+--[=[
+	@function get
+	@within effect_utils
 
-local effects = {} :: { [Player]: effect }
+	get all effects for a player.
 
-local effect_handlers = {
-	speed = function(player: Player, effect: effect)
-		local effect_change = effect.change
-		local original_data = effect.original_data
+	@param player Player -- the player to get effects for.
+	@return { effect } -- the effects for the player.
+]=]
+function effect_utils.get(player: Player)
+	effects[player] = effects[player] or {}
 
-		local humanoid = players.get_humanoid(player)
+	return effects[player]
+end
 
-		if not humanoid then
-			return
-		end
+--[=[
+	@function give
+	@within effect_utils
 
-		humanoid.WalkSpeed = original_data.speed + effect_change
-	end,
+	give an effect to a player.
 
-	jump = function(player: Player, effect: effect)
-		local effect_change = effect.change
-		local original_data = effect.original_data
+	@param player Player -- the player to give the effect to.
+	@param effect_name string -- the name of the effect to give.
+	@param change number -- the amount of change the effect will apply.
+	@param lifetime number? -- the time, in seconds, the effect will last.
+]=]
+function effect_utils.give(player: Player, effect_name: string, change: number, lifetime: number?)
+	effects[player] = effects[player] or {}
 
-		local humanoid = players.get_humanoid(player)
+	effects[player][effect_name] = {
+		effect = effect_name,
+		change = change,
+		lifetime = lifetime or 0,
+		start = os.clock(),
+	}
+end
 
-		if not humanoid then
-			return
-		end
+--[=[
+	@function remove
+	@within effect_utils
 
-		humanoid.JumpPower = original_data.jump + effect_change
-	end,
-}
+	remove an effect from a player.
 
-function handle_effect(player: Player, effect: effect, type: handler_type)
-	local effect_name = effect.effect
+	@param player Player -- the player to remove the effect from.
+	@param effect_name string -- the name of the effect to remove.
+]=]
+function effect_utils.remove(player: Player, effect_name: string)
+	local player_effects = effects[player]
 
-	if type == "reset" then
-		local original_data = effect.original_data
-		local humanoid = players.get_humanoid(player)
-
-		if not humanoid then
-			return
-		end
-
-		humanoid.WalkSpeed = original_data.speed
-		humanoid.JumpPower = original_data.jump
-
+	if not player_effects then
 		return
 	end
 
-	if effect_handlers[effect_name] then
-		effect_handlers[effect_name](player, effect)
-	end
+	player_effects[effect_name] = nil
 end
 
-return {
-	--// effect helpers
-	get = function(player: Player)
-		if not effects[player] then
-			effects[player] = {}
-		end
+--[=[
+	@function clear
+	@within effect_utils
 
-		return effects[player]
-	end,
+	remove all effects for a player.
 
-	give = function(player: Player, effect_name: string, change: number, lifetime: number?)
-		if not effects[player] then
-			effects[player] = {}
-		end
+	@param player Player -- the player to clear the effects for.
+]=]
+function effect_utils.clear(player: Player)
+	effects[player] = {}
+end
 
-		print(`giving {effect_name} to {player.Name} with a lifetime of {lifetime}`)
+--[=[
+	@function step
+	@within effect_utils
+	@client
 
+	step all effects for the current player.
+	
+	@return { effect } -- the effects that were active and applied.
+]=]
+function effect_utils.step(): { effect }
+	local applied = {}
+	local now = os.clock()
+
+	for player, player_effects in pairs(effects) do
 		local humanoid = players.get_humanoid(player)
 
 		if not humanoid then
-			return
+			continue
 		end
 
-		effects[player][effect_name] = {
-			effect = effect_name,
-			change = change,
-
-			lifetime = lifetime or 0,
-			start = os.clock(),
-
-			original_data = {
+		if not baselines[player] then
+			baselines[player] = {
 				speed = humanoid.WalkSpeed,
 				jump = humanoid.JumpPower,
-			},
-		}
-	end,
-
-	remove = function(player: Player, effect_name: string)
-		if not effects[player] then
-			effects[player] = {}
+			}
 		end
 
-		local effect: effect? = effects[player][effect_name]
+		local base = baselines[player]
 
-		if not effect then
-			return
-		end
+		local speed_delta = 0
+		local jump_delta = 0
 
-		handle_effect(player, effect, "reset")
+		for name, effect in pairs(player_effects) do
+			if effect.lifetime > 0 and (now - effect.start) >= effect.lifetime then
+				player_effects[name] = nil
 
-		effects[player][effect_name] = nil
-	end,
-
-	clear = function(player: Player)
-		effects[player] = {}
-	end,
-
-	--// effect handler
-	step = function(): { string }
-		local count = {}
-
-		for player: Player, player_effects: { effect } in pairs(effects) do
-			for _, effect: effect in pairs(player_effects) do
-				local effect_name = effect.effect
-				local effect_lifetime = effect.lifetime
-				local effect_start = effect.start
-				
-				table.insert(count, effect_name)
-
-				if effect_lifetime ~= 0 then
-					local elapsed = os.clock() - effect_start
-
-					if elapsed >= effect_lifetime then
-						handle_effect(player, effect, "reset")
-
-						effects[player][effect_name] = nil
-
-						continue
-					end
-				end
-
-				handle_effect(player, effect, "apply")
+				continue
 			end
+
+			if effect.effect == "speed" then
+				speed_delta += effect.change
+			elseif effect.effect == "jump" then
+				jump_delta += effect.change
+			end
+
+			table.insert(applied, effect)
 		end
 
-		return count
-	end,
-}
+		humanoid.WalkSpeed = base.speed + speed_delta
+		humanoid.JumpPower = base.jump + jump_delta
+	end
+
+	return applied
+end
+
+return effect_utils

@@ -4,9 +4,11 @@
 pesde.lock
 
 # dev
-selene.toml
 sourcemap.json
 out
+
+# docs
+build
 
 # misc
 assets/places

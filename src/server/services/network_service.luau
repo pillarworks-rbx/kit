@@ -13,7 +13,7 @@ network_service.identifier = "network_service"
 
 export type self = typeof(network_service)
 
-function network_service.handle_character(self: self, delta_time: number)
+function network_service.handle_character(_self: self, _delta_time: number)
 	for _, player, cframe in network.reload_character.iter() do
 		--// reload their character
 		player:LoadCharacterAsync()
@@ -27,7 +27,7 @@ function network_service.handle_character(self: self, delta_time: number)
 	end
 end
 
-function network_service.handle_damage(self: self, delta_time: number)
+function network_service.handle_damage(_self: self, _delta_time: number)
 	for _, player, damage in network.kit.damage.iter() do
 		local character = player.Character or player.CharacterAdded:Wait()
 		local humanoid = character:WaitForChild("Humanoid") :: Humanoid?

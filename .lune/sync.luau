@@ -1,57 +1,61 @@
---// pillarworks internal sync tool 0.1.0
---// pls contribute improvements, i don't like this either
+local process = require("@lune/process")
 
-local commands = require("@libsync/commands")
-local runner = require("@libsync/runner")
+local richterm = require("@libsync/vendor/richterm")
+local frkcli = require("@libsync/vendor/frkcli")
 
-local richterm = require("@vendor/richterm")
+local config = require("@libsync/config")
 
-local options = {}
+local name = `lune run {config.name}`
+local description = table.concat(config.description, config.delimiter)
 
-local found_error = false
-local version = "0.1.0"
+local cli = frkcli.new(name, description)
 
-print(`\n{richterm.bold(`pillarworks internal sync tool {version}`)}`)
-print(`now syncing kit\n`)
+cli:add_flag("sourcemap", {
+	aliases = { "-so" },
+	help = "generate sourcemap",
+})
 
-for _, command: commands.command in ipairs(commands) do
-	local name = command.command
-	local args = command.args
-	local colour = command.colour
-	
-	local combined = richterm.combine(colour, richterm.bold)
+cli:add_flag("network", {
+	aliases = { "-n" },
+	help = "generate network",
+})
 
-	print(`running command "{combined(name.. " " .. table.concat(args, " "))}"`)
-	
-	local new_options = table.clone(options)
-	
-	if name == "darklua" then
-    	new_options.stdio = "inherit"
-    end
+cli:add_flag("process", {
+	aliases = { "-p" },
+	help = "process src using darklua",
+})
 
-	local result = runner(name, args, new_options)
+cli:add_flag("serve", {
+	aliases = { "-se" },
+	help = "serve out using rojo",
+})
 
-	if not result.success then
-		local task_error = result.result.stderr
+local start = require("@libsync/start")
 
-		if task_error == nil or task_error == "" then
-			task_error = result.stdout
+local args = process.args or {}
+local parsed, err = cli:parse(args)
 
-			if task_error == nil or task_error == "" then
-				task_error = "unknown error"
-			end
-		end
+if err ~= nil then
+	print(`[{richterm.red("error")}] error while parsing command line arguments: {err}`)
 
-		print(`command "{combined(name.. " " .. table.concat(args, " "))}" failed with error:\n{richterm.red(task_error)}`)
+	process.exit(1)
+end
 
-		found_error = true
+assert(parsed)
+
+local flags = parsed.flags
+local true_args = {} :: { string }
+
+for flag_name, value in pairs(flags) do
+	if value then
+		table.insert(true_args, flag_name)
 	end
-
-	print(`ran command "{combined(name.. " " .. table.concat(args, " "))}" with no errors\n`)
 end
 
-if found_error then
-	print("one or more commands failed")
+if #true_args <= 0 then
+	for flag_name, _ in pairs(flags) do
+		flags[flag_name] = true
+	end
 end
 
-print(`darklua process output below:\n`)
+start(flags)

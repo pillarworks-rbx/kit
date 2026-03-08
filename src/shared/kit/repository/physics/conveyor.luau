@@ -8,10 +8,10 @@ local debugger = require("@shared/debugger")
 local std = require("@kit/std")
 local types = require("@kit/types")
 
-local objects = std.objects
+local object_utils = std.object
 local attributes = std.attributes
 
-local object = objects.register({
+local object = object_utils.register({
 	events = {},
 
 	attributes = {
@@ -24,12 +24,12 @@ local object = objects.register({
 })
 
 export type pillar = types.pillar
-export type object = types.object<typeof(object)>
+export type object = types.processed_object<typeof(object)>
 
-function object.events.load(self: object, pillar: pillar)
-    local instance = self.instance
-    local arrow = instance:FindFirstChild("arrow")
-    
+function object.events.load(self: object, _pillar: pillar)
+	local instance = self.instance
+	local arrow = instance:FindFirstChild("arrow")
+
 	self.group:add(RunService.PreRender:Connect(function(delta_time: number)
 		delta_time = math.clamp(delta_time, 0, 1)
 
@@ -56,7 +56,7 @@ function object.events.load(self: object, pillar: pillar)
 	debugger.log(`object {self.id} has successfully loaded`, "success")
 end
 
-function object.events.unload(self: object, pillar: pillar)
+function object.events.unload(self: object, _pillar: pillar)
 	self.group:clean()
 
 	debugger.log(`object {self.id} has successfully loaded`, "success")

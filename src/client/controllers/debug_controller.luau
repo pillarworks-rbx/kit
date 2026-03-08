@@ -33,18 +33,18 @@ function debug_controller.start(self: self)
 
 	--// initialize debugger
 	local debugger_open = true
-	
+
 	debugger.cleanup()
 
 	debugger.start(function()
 		return debugger_open
 	end)
 
-	task.spawn(function()
-		while task.wait(1) do
-			--debugger_open = not debugger_open
-		end
-	end)
+	-- task.spawn(function()
+	-- 	while task.wait(1) do
+	-- 	    debugger_open = not debugger_open
+	-- 	end
+	-- end)
 
 	--// add output debugger
 	debugger.add_debugger({ "pillarworks kit output" }, function()
@@ -55,10 +55,10 @@ function debug_controller.start(self: self)
 			local message_status = message.status
 			local message_text = message.message
 			local message_count = message.count
-			
+
 			local formatted_time = format_ms(message_time)
 			local text = `[{formatted_time}] [{message_status}] {message_text}`
-			
+
 			if message.count > 1 then
 				text = `{text} (x{message_count})`
 			end

@@ -2,18 +2,18 @@
 --!native
 
 local debugger = require("@shared/debugger")
+local misc_utils = require("@shared/utils/misc")
 
 local std = require("@kit/std")
 local types = require("@kit/types")
 
-local objects = std.objects
+local object_utils = std.object
 local attributes = std.attributes
 local players = std.players
-local utility = std.utility
 
 local checkpoint_utils = require("@shared/utils/checkpoints")
 
-local object = objects.register({
+local object = object_utils.register({
 	events = {},
 
 	attributes = {
@@ -28,7 +28,7 @@ local object = objects.register({
 })
 
 export type pillar = types.pillar
-export type object = types.object<typeof(object)>
+export type object = types.processed_object<typeof(object)>
 
 function on_hit(self: object, hit: BasePart, pillar: pillar)
 	local player = players.from_hit(hit) :: Player?
@@ -41,16 +41,14 @@ function on_hit(self: object, hit: BasePart, pillar: pillar)
 
 	local checkpoint_id: string = object_attributes.checkpoint_id
 	local cooldown: number = object_attributes.cooldown
-	
+
 	local checkpoint_cframe = self.instance.CFrame
 
-	print(checkpoint_id)
-
 	--// only fire once every few seconds
-	if utility.throttle(`update checkpoint for {player.UserId} in {self.id}`, cooldown) then
-		print(`update checkpoint for {player.UserId} as {self.id}`)
+	if misc_utils.throttle(`update checkpoint for {player.UserId} in {self.id}`, cooldown) then
+		debugger.log(`update checkpoint for {player.UserId} as {self.id}`, "success")
 
-		checkpoint_utils.set_checkpoint(player, pillar, checkpoint_id, checkpoint_cframe)
+		checkpoint_utils.set(player, pillar, checkpoint_id, checkpoint_cframe)
 	end
 end
 
@@ -72,7 +70,7 @@ function object.events.load(self: object, pillar: pillar)
 	debugger.log(`object {self.id} has successfully loaded`, "success")
 end
 
-function object.events.unload(self: object, pillar: pillar)
+function object.events.unload(self: object, _pillar: pillar)
 	self.group:clean()
 
 	debugger.log(`object {self.id} has successfully unloaded`, "success")

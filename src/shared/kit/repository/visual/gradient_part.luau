@@ -8,16 +8,16 @@ local debugger = require("@shared/debugger")
 local std = require("@kit/std")
 local types = require("@kit/types")
 
-local objects = std.objects
+local object_utils = std.object
 local property = std.property
 
-local object = objects.register({
+local object = object_utils.register({
 	events = {},
 	attributes = {},
 })
 
 export type pillar = types.pillar
-export type object = types.object<typeof(object)>
+export type object = types.processed_object<typeof(object)>
 
 local EFFECT_COLOUR_PROPERTIES = {
 	"Color",
@@ -57,7 +57,7 @@ function evaluate_colour_sequence(sequence: ColorSequence, alpha: number)
 	return Color3.new()
 end
 
-function object.events.load(self: object, pillar: pillar)
+function object.events.load(self: object, _pillar: pillar)
 	local alpha = 0
 
 	self.group:add(RunService.PreRender:Connect(function(delta_time: number)
@@ -92,7 +92,7 @@ function object.events.load(self: object, pillar: pillar)
 	debugger.log(`object {self.id} has successfully loaded`, "success")
 end
 
-function object.events.unload(self: object, pillar: pillar)
+function object.events.unload(self: object, _pillar: pillar)
 	self.group:clean()
 
 	debugger.log(`object {self.id} has successfully unloaded`, "success")

@@ -3,16 +3,16 @@
 
 local debugger = require("@shared/debugger")
 local effects = require("@shared/utils/effects")
+local misc_utils = require("@shared/utils/misc")
 
 local std = require("@kit/std")
 local types = require("@kit/types")
 
-local objects = std.objects
+local object_utils = std.object
 local attributes = std.attributes
 local players = std.players
-local utility = std.utility
 
-local object = objects.register({
+local object = object_utils.register({
 	events = {},
 
 	attributes = {
@@ -45,9 +45,9 @@ local object = objects.register({
 })
 
 export type pillar = types.pillar
-export type object = types.object<typeof(object)>
+export type object = types.processed_object<typeof(object)>
 
-function on_hit(self: object, hit: BasePart, pillar: pillar)
+function on_hit(self: object, hit: BasePart, _pillar: pillar)
 	local object_attributes = attributes.get(self)
 
 	local effect = object_attributes.effect
@@ -55,8 +55,6 @@ function on_hit(self: object, hit: BasePart, pillar: pillar)
 	local duration = object_attributes.duration
 	local cooldown = object_attributes.cooldown
 	local refill_timer = object_attributes.refill_timer
-	
-	print(effect)
 
 	local player = players.from_hit(hit)
 
@@ -75,7 +73,7 @@ function on_hit(self: object, hit: BasePart, pillar: pillar)
 		return
 	end
 
-	if utility.throttle(`give {effect} to {player.UserId} in {self.id}`, cooldown) then
+	if misc_utils.throttle(`give {effect} to {player.UserId} in {self.id}`, cooldown) then
 		if refill_timer then
 			effects.remove(player, effect)
 
@@ -102,13 +100,13 @@ function object.events.load(self: object, pillar: pillar)
 
 		on_hit(self, hit, pillar)
 	end))
-	
+
 	debugger.log(`object {self.id} has successfully loaded`, "success")
 end
 
-function object.events.unload(self: object, pillar: pillar)
+function object.events.unload(self: object, _pillar: pillar)
 	self.group:clean()
-	
+
 	debugger.log(`object {self.id} has successfully unloaded`, "success")
 end
 
